@@ -1,0 +1,309 @@
+==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+
+background = ${xrdb:background:#000000}
+color1 = ${xrdb:color1:#ff5555}
+color2 = ${xrdb:color4:#ff5555}
+color3 = ${xrdb:color8:#ff5555}
+
+;  _                    
+; | |__   __ _ _ __ ___ 
+; | '_ \ / _` | '__/ __|
+; | |_) | (_| | |  \__ \
+; |_.__/ \__,_|_|  |___/
+
+[bar/bar]
+height = 35
+width = 100%
+
+background = ${colors.background}
+;background = ${colors.primary}
+foreground = ${colors.color1}
+bottom = true
+
+line-size = 2
+
+font-0=Iosevka:size=11;3
+font-1=Font Awesome 5 Free Regular:size=11;3
+font-2=Font Awesome 5 Free Solid:size=11;3
+font-3=Font Awesome 5 Brands:size=11;3
+font-4=font\-logos:size=11;3
+font-5=Noto Sans CJK JP:size=11:antialias=true;3
+
+modules-left = launcher i3 
+modules-center = mpd
+modules-right = cpu memory time pulseaudio power
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+wm-restack = i3
+
+;                      _       _           
+;  _ __ ___   ___   __| |_   _| | ___  ___ 
+; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+; | | | | | | (_) | (_| | |_| | |  __/\__ \
+; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
+                                         
+[module/launcher]
+type=custom/text
+content = 
+content-font=5
+content-foreground=${colors.color1}
+content-padding=3
+click-left=launcher
+;The script above is to be found here : https://github.com/ngynLk/scripts
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:40:...%
+label-color1 = ${colors.color1} 
+label-background = ${colors.background} 
+label-padding = 2
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+format-foreground = ${colors.color1}
+format-background = ${colors.background}
+index-sort = true
+
+enable-click = true
+reverse-scroll = false
+
+label-focused = %index%
+label-focused-overline = ${colors.color1}
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+label-urgent = 
+label-urgent-padding = 2
+label-urgent-foreground = ${colors.background}
+label-urgent-background = ${colors.color3}
+label-urgent-font = 2
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-9 = 10;
+;ws-icon-default = 
+
+[module/power]
+type = custom/text
+content = 
+content-foreground = ${colors.color3}
+click-left = powermenu
+;The script above is to be found here : https://github.com/ngynLk/scripts
+content-padding = 2
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+format-online = <icon-prev> <toggle> <icon-next> <label-song> <label-time>
+format-online-padding = 2
+format-online-foreground = ${colors.color2}
+format-online-background = ${colors.background}
+label-song-foreground = ${colors.color2}
+label-song-background = ${colors.background}
+label-song-padding = 2
+label-time-foreground = ${colors.color2}
+label-time-background = ${colors.background}
+label-time-padding = 1
+
+format-offline = <label-offline>
+label-offline =  offline
+format-offline-padding = 2
+format-offline-foreground = ${colors.color2}
+format-offline-background = ${colors.background}
+
+bar-progress-width = 35
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+;icon-prev = 
+;icon-stop = 
+;icon-play = 
+;icon-pause = 
+;icon-next = 
+
+label-song-maxlen = 50
+label-song-ellipsis = true
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-padding = 2
+format-foreground = ${colors.color3}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-padding = 2
+format-prefix = " "
+format-foreground = ${colors.color3}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlx0013eff2094e
+interval = 3.0
+
+format-connected =  <label-connected>
+label-connected = %essid%
+label-connected-color1 = ${colors.color1}
+
+;format-disconnected =
+format-disconnected = <label-disconnected>
+label-disconnected = %ifname% disconnected
+label-disconnected-color1 = ${colors.color1}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-color1 = ${colors.color1}
+
+[module/eth]
+type = internal/network
+interface = eno1
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-color1 = ${colors.color1-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-color1 = ${colors.color1-alt}
+
+[module/time]
+type = internal/date
+interval = 10
+format-margin = 0
+
+time = "%H:%M"
+date = "%d %b"
+
+label =  %date%, %time%
+label-foreground = ${colors.color3}
+label-background = ${colors.background}
+label-padding = 2
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-margin = 1
+format-volume = <ramp-volume><label-volume>
+label-volume = %percentage:3:3%%
+format-volume-foreground = ${colors.color3}
+format-volume-background = ${colors.background}
+format-volume-padding = 2
+use-ui-max = false
+interval = 5
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
+
+label-muted = ""   
+label-muted-background = ${colors.background}
+label-muted-foreground = ${colors.color3}
+label-muted-padding = 2
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format =  <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-color1 = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+format-margin = 0
+format-background = ${colors.background}
+format-foreground = ${colors.color3}
+format-padding = 2
+
+label-open = 
+label-close = 
+label-separator = |
+
+; reboot
+menu-0-1 = 
+menu-0-1-exec = menu-open-2
+; poweroff
+menu-0-2 = 
+menu-0-2-exec = menu-open-3
+; logout
+menu-0-0 = 
+menu-0-0-exec = menu-open-1
+
+menu-2-0 = 
+menu-2-0-exec = reboot
+
+menu-3-0 = 
+menu-3-0-exec = poweroff
+
+menu-1-0 = 
+menu-1-0-exec = i3-msg exit || openbox --exit
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
+                      
