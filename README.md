@@ -18,5 +18,23 @@ At this time, all my themes use Xresources colors, for pywal integration.
 They are mostly made for `i3`, but copy-pasting the `i3` module to `bspwm` shouldn't be too complicated.
 
 ## arch-blur
-![bar-screenshot](https://i.redd.it/ra6a1d59les41.png "Bar Screenshot")
-![full-screenshot](https://i.redd.it/ra6a1d59les41.png "Full Screenshot")
+*bar screenshot*
+![bar-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/arch-blur/bar-scrot.png "Bar Screenshot")
+
+*full screenshot*
+![full-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/arch-blur/scrot.png "Full Screenshot")
+
+To get that blur, you need `compton-tryone`, include `dock` in the blur section of the config and set polybar's opacity to around 85% in the `compton.conf` (see dotfiles).
+
+**Fonts used:**
++ SF Mono
++ Font Awesome 5
++ font-logo
+
+**Modules:**
++ launcher : launches a rofi instance, it is a script you can find in my repo.
++ i3 : i3 workspaces, basically.
++ mpd : mpd controller
++ cpu, memory, date
++ pulseaudio : controls volume, requires pulseaudio (obviously)
++ power : launches a rofi instance that has basic power controls (script to be found in my repo)
