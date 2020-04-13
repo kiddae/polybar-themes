@@ -152,7 +152,7 @@ icon-next = 
 ;icon-pause = 
 ;icon-next = 
 
-label-song-maxlen = 50
+label-song-maxlen = 75
 label-song-ellipsis = true
 
 [module/cpu]
