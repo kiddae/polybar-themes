@@ -45,7 +45,7 @@ font-1=Font Awesome 5 Free Regular:size=11;3
 font-2=Font Awesome 5 Free Solid:size=11;3
 font-3=Font Awesome 5 Brands:size=11;3
 font-4=font\-logos:size=11;3
-font-5=Noto Sans CJK JP:size=11:antialias=true;3
+font-5=IPAGothic:size=12:antialias=true;3
 
 modules-left = launcher i3 
 modules-center = mpd

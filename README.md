@@ -30,6 +30,7 @@ To get that blur, you need `compton-tryone`, include `dock` in the blur section 
 + Iosevka
 + Font Awesome 5
 + font-logo
++ IPAGothic (for japanese glyphs)
 
 **Modules:**
 + `launcher` : launches a `rofi` instance, it is a script you can find in my repo.
@@ -54,6 +55,7 @@ This theme works very well with rounded borders. To enable them, uncomment the `
 **Fonts used:**
 + SF Mono
 + Font Awesome 5
++ IPAGothic (for japanese glyphs)
 
 **Modules:**
 + `wsnumber` : displays the workspace number. It uses a script included in the repo, uses `jq` as a dependency (credits to Airblader, on some random forum). Works only on i3. For other wms, you might want to use `wmctrl` or something else.

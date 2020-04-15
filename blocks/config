@@ -45,6 +45,7 @@ offset-y = 20
 font-0=SF Mono:size=11:dpi=96:rgba=rgb:hinting=0:hintstyle=hintnone:lcdfilter=lcddefault:antialias=true;3
 font-1=FontAwesome5Free:style=Regular:size=10:antialias=true;3
 font-2=FontAwesome5Free:style=Solid:size=10:antialias=true;3
+font-3=IPAGothic:style=Regular:size=11:antialias=true;3
 
 modules-left = wsnumber xwindow
 
@@ -65,7 +66,7 @@ offset-x = 56.5%
 
 modules-left = mpd
 font-0=SF Mono:size=11:dpi=96:rgba=rgb:hinting=0:hintstyle=hintnone:lcdfilter=lcddefault:antialias=true;3
-font-1=Noto Sans CJK JP:size=11:antialias=true;3
+font-1=IPAGothic:style=Regular:size=11:antialias=true;3
 font-2=FontAwesome5Free:style=Solid:size=10:antialias=true;3
 font-3=FontAwesome5Free:style=Regular:size=10:antialias=true;3
 font-4=FontAwesome5Brands:size=10:antialias=true;3
@@ -84,7 +85,7 @@ offset-x = 84.5%
 
 modules-left = pulseaudio time power
 font-0=SF Mono:size=11:dpi=96:rgba=rgb:hinting=0:hintstyle=hintnone:lcdfilter=lcddefault:antialias=true;3
-font-1=Noto Sans CJK JP:size=11:antialias=true;3
+font-1=IPAGothic:style=Regular:size=11:antialias=true;3
 font-2=FontAwesome5Free:style=Solid:size=10:antialias=true;3
 font-3=FontAwesome5Free:style=Regular:size=10:antialias=true;3
 font-4=FontAwesome5Brands:size=10:antialias=true;3
