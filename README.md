@@ -36,6 +36,7 @@ To get that blur, you need `compton-tryone`, include `dock` in the blur section 
 + `launcher` : launches a `rofi` instance, it is a script you can find in my repo.
 + `i3` : i3 workspaces, basically.
 + `mpd` : `mpd` controller
++ `previous`, `playpause`, `next` and `spotify` : spotify controller, uses [this](https:/github.com/polybar-spotify-controls). I changed the path provided on the original thing, feel free to adapt.
 + `cpu`, `memory`, `date` : pretty self-explanatory.
 + `pulseaudio` : controls volume, requires `pulseaudio` (obviously)
 + `power` : launches a `rofi` instance that has basic power controls (script to be found in my repo)
@@ -61,6 +62,7 @@ This theme works very well with rounded borders. To enable them, uncomment the `
 + `wsnumber` : displays the workspace number. It uses a script included in the repo, uses `jq` as a dependency (credits to Airblader, on some random forum). Works only on i3. For other wms, you might want to use `wmctrl` or something else.
 + `xwindow` : displays window name
 + `mpd` : mpd controller.
++ `previous`, `playpause`, `next` and `spotify` : spotify controller, uses [this](https:/github.com/polybar-spotify-controls). I changed the path provided on the original thing, feel free to adapt.
 + `pulseaudio` : controls volume w/ `pulseaudio`
 + `date` : displays date and time (24h format)
 + `power` : launches a `rofi` instance, script to be found on my scripts repo (might not really look well with this theme...)
