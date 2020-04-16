@@ -55,16 +55,21 @@ scroll-down = i3wm-wsprev
 wm-restack = i3
 
 [bar/music]
+enable-ipc = true
 height = 45
 ;radius = 22.5
 width = 27%
 
 background = ${colors.background}
+foreground = ${colors.color2}
 override-redirect = true
 offset-y = 20
 offset-x = 56.5%
 
-modules-left = mpd
+; Spotify (script at github.com/dietervanhoof/polybar-spotify-controls)
+modules-left = previous playpause next spotify
+; Mpd
+;modules-left = mpd
 font-0=SF Mono:size=11:dpi=96:rgba=rgb:hinting=0:hintstyle=hintnone:lcdfilter=lcddefault:antialias=true;3
 font-1=IPAGothic:style=Regular:size=11:antialias=true;3
 font-2=FontAwesome5Free:style=Solid:size=10:antialias=true;3
@@ -224,6 +229,56 @@ label-muted = "    "
 label-muted-background = ${colors.background}
 label-muted-foreground = ${colors.color3}
 label-muted-padding = 2
+
+;Spotify modules
+
+[module/previous]
+type = custom/script
+format-font = 3
+format-padding = 2
+format-background = ${colors.color2}
+format-foreground = ${colors.background}
+exec = echo " "
+exec-if = "pgrep spotify"
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org. mpris.MediaPlayer2.Player.Previous"
+
+
+[module/next]
+type = custom/script
+format-font = 3
+format-padding = 2
+format-background = ${colors.color2}
+format-foreground = ${colors.background}
+exec = echo " "
+exec-if = "pgrep spotify"
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org. mpris.MediaPlayer2.Player.Next"
+
+[module/playpause]
+type = custom/ipc
+format-font = 3
+format-background = ${colors.color2}
+format-foreground = ${colors.background}
+format-padding = 1
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+initial = 2
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org. mpris.MediaPlayer2.Player.PlayPause"
+
+
+[module/spotify]
+type = custom/ipc
+format-padding = 2
+; Default
+hook-0 = echo ""
+; Playing/paused show song name and artist
+hook-1 = python3 ~/.scripts/spotify/spotify_status.py
+initial=2
+click-left = i3-msg '[class="Spotify"] focus'
+
 
 [settings]
 screenchange-reload = true

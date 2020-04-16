@@ -30,6 +30,7 @@ color3 = ${xrdb:color8:#ff5555}
 ; |_.__/ \__,_|_|  |___/
 
 [bar/bar]
+enable-ipc=true
 height = 35
 width = 100%
 
@@ -41,14 +42,17 @@ bottom = true
 line-size = 2
 
 font-0=Iosevka:size=11;3
-font-1=Font Awesome 5 Free Regular:size=11;3
-font-2=Font Awesome 5 Free Solid:size=11;3
+font-1=Font Awesome 5 Free Solid:size=11;3
+font-2=Font Awesome 5 Free Regular:size=11;3
 font-3=Font Awesome 5 Brands:size=11;3
-font-4=font\-logos:size=11;3
+font-4=font\-logos:size=14;3
 font-5=IPAGothic:size=12:antialias=true;3
 
 modules-left = launcher i3 
-modules-center = mpd
+; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
+modules-center = previous playpause next spotify
+; Mpd
+; modules-center = mpd
 modules-right = cpu memory time pulseaudio power
 
 scroll-up = i3wm-wsnext
@@ -67,7 +71,7 @@ type=custom/text
 content = 
 content-font=5
 content-foreground=${colors.color1}
-content-padding=3
+content-padding=2
 click-left=launcher
 ;The script above is to be found here : https://github.com/ngynLk/scripts
 
@@ -98,7 +102,8 @@ label-unfocused-padding = 2
 label-urgent = 
 label-urgent-padding = 2
 label-urgent-foreground = ${colors.background}
-label-urgent-background = ${colors.color3}
+label-urgent-background = ${colors.color1}
+label-urgent-overline = ${colors.background}
 label-urgent-font = 2
 
 ;ws-icon-0 = 1;
@@ -292,6 +297,52 @@ menu-3-0-exec = poweroff
 
 menu-1-0 = 
 menu-1-0-exec = i3-msg exit || openbox --exit
+
+;Spotify modules
+
+[module/previous]
+type = custom/script
+format-font = 2
+format-padding = 2
+format-foreground = ${colors.color2}
+exec = echo ""
+exec-if = "pgrep spotify"
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+
+[module/next]
+type = custom/script
+format-font = 2
+format-padding = 2
+format-foreground = ${colors.color2}
+exec = echo ""
+exec-if = "pgrep spotify"
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+[module/playpause]
+type = custom/ipc
+format-font = 2
+format-padding = 0
+format-foreground = ${colors.color2}
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+initial = 2
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
+
+[module/spotify]
+type = custom/ipc
+format-foreground = ${colors.color2}
+; Default
+hook-0 = echo ""
+; Playing/paused show song name and artist
+hook-1 = python3 ~/.scripts/spotify/spotify_status.py
+initial = 2
+click-left = i3-msg '[class="Spotify"] focus'
 
 [settings]
 screenchange-reload = true
