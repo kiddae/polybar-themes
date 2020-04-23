@@ -21,7 +21,7 @@
 background = ${xrdb:background:#000000}
 color1 = ${xrdb:color1:#ff5555}
 color2 = ${xrdb:color4:#ff5555}
-color3 = ${xrdb:color8:#ff5555}
+color3 = ${xrdb:color7:#ff5555}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 

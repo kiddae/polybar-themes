@@ -1,4 +1,4 @@
-==========================================================
+;==========================================================
 ;
 ;
 ;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
@@ -18,10 +18,10 @@
 
 [colors]
 
-foreground = ${xrdb:color7:#000000}
-background = ${xrdb:color0:#ffffff}
-;background = ${xrdb:color7:#000000}
-;foreground = ${xrdb:color0:#ffffff}
+;background = #fff
+;foreground = #000
+foreground = ${xrdb:color7:#fff}
+background = ${xrdb:color0:#000}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -31,29 +31,30 @@ background = ${xrdb:color0:#ffffff}
 
 [bar/bar]
 enable-ipc=true
-height = 30
+height = 35
 width = 100%
-;radius-top = 20
+radius-bottom = 15
 padding = 4
-bottom = true
+;bottom = true
 
 background = ${colors.background}
 ;background = ${colors.primary}
 foreground = ${colors.foreground}
-;border-size = 20
-;border-top-size = 0
-;border-bottom-size = 0
-;border-color = #0000
+border-size = 15
+border-top-size = 0
+border-bottom-size = 0
+border-color = #0000
 
 line-size = 2
 
-font-0=SF Pro Display:style=Regular:size=11;2
-font-1=SF Pro Display:style=Semibold:size=11;2
+font-0=SF Pro Display:style=Regular:size=11;3
+font-1=SF Pro Display:style=Semibold:size=11;3
 font-2=Material Icons:size=13;5
-font-3=font\-logos:size=10;2
+font-3=font\-logos:size=10;3
+font-4=FontAwesome5Brands:size=11;2
 
 modules-left = launcher i3 xwindow
-modules-right = updates previous playpause next spotify pulseaudio time powermenu
+modules-right = spotify pulseaudio time powermenu
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -81,12 +82,12 @@ exec-if = [[ $(yay -Qu | wc -l) != 0 ]]
 format =   <label> update(s) available.
 format-margin = 8
 tail = true
-interval = 10
+interval = 30
 click-left = urxvt -e yay -Syu
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:40:...%
+label = %title:0:75:...%
 label-empty = Empty 
 label-empty-font = 2
 label-font = 2
@@ -102,16 +103,16 @@ enable-click = true
 reverse-scroll = false
 
 label-focused = %index%
-label-focused-overline = ${colors.foreground}
+label-focused-underline = ${colors.foreground}
 label-focused-padding = 4
 label-focused-font = 2
 
 label-unfocused = %index%
 label-unfocused-padding = 4
 
-label-urgent = /!\
-label-urgent-padding = 3
-label-urgent-overline = ${colors.background}
+label-urgent = !
+label-urgent-padding = 5
+label-urgent-underline = ${colors.background}
 label-urgent-background = ${colors.foreground}
 label-urgent-foreground = ${colors.background}
 label-urgent-font = 2
@@ -194,7 +195,7 @@ ramp-2 = 
 [module/powermenu]
 type = custom/menu
 
-expand-right = true
+expand-right = false
 
 format-margin = 2
 format-spacing = 1
@@ -219,7 +220,7 @@ menu-2-0-exec = reboot
 menu-3-0 = 
 menu-3-0-exec = poweroff
 
-menu-1-0 = 
+menu-1-0 = 
 menu-1-0-exec = i3-msg exit || openbox --exit
 
 ;Spotify modules
@@ -243,24 +244,22 @@ click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org
 type = custom/ipc
 format-margin = 0
 ; Default
-hook-0 = echo ""
+hook-0 = echo ""
 ; Playing
 hook-1 = echo ""
 ; Paused
 hook-2 = echo ""
-initial = 2
+initial = 1
 click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 
 
 [module/spotify]
-type = custom/ipc
+type = custom/script
 format-margin = 4
-; Default
-hook-0 = echo ""
-; Playing/paused show song name and artist
-hook-1 = python3 ~/.scripts/spotify/spotify_status.py -t 75 -f '{artist} - {song}'
-initial = 2
-click-left = i3-msg '[class="Spotify"] focus'
+format =    <label>
+exec = playerctl metadata --format '{{artist}}: {{title}}'
+tail = true
+interval = 1
 
 [settings]
 screenchange-reload = true
@@ -268,7 +267,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = true
+pseudo-transparency = true
 
 [global/wm]
 margin-top = 0

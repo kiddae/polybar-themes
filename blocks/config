@@ -1,4 +1,4 @@
-==========================================================
+;==========================================================
 ;
 ;
 ;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
@@ -19,9 +19,9 @@
 [colors]
 
 background = ${xrdb:color0:#222}
-color1 = ${xrdb:color1}
-color2 = ${xrdb:color6}
-color3 = ${xrdb:color8}
+color1 = ${xrdb:color2}
+color2 = ${xrdb:color4}
+color3 = ${xrdb:color6}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -30,24 +30,24 @@ color3 = ${xrdb:color8}
 ; |_.__/ \__,_|_|  |___/
 
 [bar/i3]
-height = 45
-;radius = 22.5
-;Works very well with a radius like this! Put it on every bar.
-width = 30%
+height = 40
+;radius = 20
+;Works very well with a ;radius like this! Put it on every bar.
+width = 35%
 
 background = ${colors.background}
 foreground = ${colors.color1}
 
 override-redirect=true
-offset-x = 20
-offset-y = 20
+offset-x = 10
+offset-y = 10
 
-font-0=SF Mono:size=11:dpi=96:rgba=rgb:hinting=0:hintstyle=hintnone:lcdfilter=lcddefault:antialias=true;3
+font-0=SF Mono:size=11:antialias=true;3
 font-1=FontAwesome5Free:style=Regular:size=10:antialias=true;3
 font-2=FontAwesome5Free:style=Solid:size=10:antialias=true;3
 font-3=IPAGothic:style=Regular:size=11:antialias=true;3
 
-modules-left = wsnumber xwindow
+modules-left = i3 wsnumber xwindow
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -56,21 +56,21 @@ wm-restack = i3
 
 [bar/music]
 enable-ipc = true
-height = 45
-;radius = 22.5
-width = 27%
+height = 40
+;radius = 20
+width = 28%
 
 background = ${colors.background}
 foreground = ${colors.color2}
 override-redirect = true
-offset-y = 20
-offset-x = 56.5%
+offset-y = 10
+offset-x = 55%
 
 ; Spotify (script at github.com/dietervanhoof/polybar-spotify-controls)
-modules-left = previous playpause next spotify
+;modules-left = previous playpause next spotify
 ; Mpd
-;modules-left = mpd
-font-0=SF Mono:size=11:dpi=96:rgba=rgb:hinting=0:hintstyle=hintnone:lcdfilter=lcddefault:antialias=true;3
+modules-left = mpd
+font-0=SF Mono:size=11:antialias=true;3
 font-1=IPAGothic:style=Regular:size=11:antialias=true;3
 font-2=FontAwesome5Free:style=Solid:size=10:antialias=true;3
 font-3=FontAwesome5Free:style=Regular:size=10:antialias=true;3
@@ -78,24 +78,33 @@ font-4=FontAwesome5Brands:size=10:antialias=true;3
 wm-restack = i3
 
 [bar/tray]
-height = 45
-;radius = 22.5
-width = 14.5%
+height = 40
+;radius = 20
+width = 15.5%
 
 padding-right = 0
 background = ${colors.background}
 override-redirect = true
-offset-y = 20
-offset-x = 84.5%
+offset-y = 10
+offset-x = 84%
+
+;tray-position = right
 
 modules-left = pulseaudio time power
-font-0=SF Mono:size=11:dpi=96:rgba=rgb:hinting=0:hintstyle=hintnone:lcdfilter=lcddefault:antialias=true;3
+font-0=SF Mono:size=11:antialias=true;3
 font-1=IPAGothic:style=Regular:size=11:antialias=true;3
 font-2=FontAwesome5Free:style=Solid:size=10:antialias=true;3
 font-3=FontAwesome5Free:style=Regular:size=10:antialias=true;3
 font-4=FontAwesome5Brands:size=10:antialias=true;3
 wm-restack = i3
 
+[bar/dummy]
+height = 60
+background = #0000
+width = 100%
+modules-left=void
+wm-restack = i3
+override-direct = true
 
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
@@ -108,15 +117,20 @@ type = custom/script
 exec = ~/.config/polybar/get_workspace
 tail = true
 interval = 0
-format-padding = 2
+format = "<label>  "
+format-padding = 0
 format-foreground = ${colors.background}
 format-background = ${colors.color1}
 scroll-up = i3 workspace next
 scroll-down = i3 workspace prev
 
+[module/void]
+type = custom/text
+content = " "
+
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:40:...%
+label = %title:0:50:...%
 label-foreground = ${colors.color1} 
 label-background = ${colors.background} 
 label-padding = 2
@@ -133,20 +147,20 @@ wrapping-scroll = false
 enable-click = true
 reverse-scroll = false
 
-label-focused = %icon%
+label-focused = 
 label-focused-font = 3
 label-focused-foreground = ${colors.background}
 label-focused-padding = 1
 
-label-unfocused = %icon%
+label-unfocused = 
 label-unfocused-font = 2
 label-unfocused-padding = 1
 label-unfocused-foreground = ${colors.background}
 
 label-urgent = 
-label-urgent-font = 2
+label-urgent-font = 1
 label-urgent-padding = 1
-label-urgent-foreground = ${colors.color3}
+label-urgent-foreground = ${colors.background}
 
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
@@ -159,12 +173,13 @@ type = custom/text
 content = 
 content-foreground = ${colors.color3}
 click-left = powermenu
+content-padding = 2
 
 [module/mpd]
 type = internal/mpd
 host = 127.0.0.1
 port = 6600
-format-online =  <icon-prev>  <toggle>  <icon-next>  <label-song><label-time>
+format-online =  <icon-prev> <toggle> <icon-next>  <label-song><label-time>
 format-online-padding = 2
 format-online-background = ${colors.color2}
 format-online-foreground = ${colors.background}
@@ -192,13 +207,13 @@ icon-play = 
 icon-pause = 
 icon-next = 
 
-label-song-maxlen = 27
+label-song-maxlen = 30
 label-song-ellipsis = true
 
 [module/time]
 type = internal/date
 interval = 10
-format-margin = 0
+format-margin = 2
 
 time = "%H:%M"
 date = "%d %b"
@@ -206,17 +221,15 @@ date = "%d %b"
 label = %date%, %time%
 label-foreground = ${colors.color3}
 label-background = ${colors.background}
-label-padding = 2
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-margin = 1
+format-volume-padding = 2
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage:3:3%%
 format-volume-background = ${colors.color3}
 format-volume-foreground = ${colors.background}
-format-volume-padding = 2
 use-ui-max = false
 interval = 5
 
@@ -238,9 +251,9 @@ format-font = 3
 format-padding = 2
 format-background = ${colors.color2}
 format-foreground = ${colors.background}
-exec = echo " "
+exec = echo "  "
 exec-if = "pgrep spotify"
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org. mpris.MediaPlayer2.Player.Previous"
+click-left = "playerctl previous"
 
 
 [module/next]
@@ -249,36 +262,30 @@ format-font = 3
 format-padding = 2
 format-background = ${colors.color2}
 format-foreground = ${colors.background}
-exec = echo " "
+exec = echo "  "
 exec-if = "pgrep spotify"
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org. mpris.MediaPlayer2.Player.Next"
+click-left = "playerctl next"
 
 [module/playpause]
-type = custom/ipc
+type = custom/script
+exec = spotifystatus
+exec-if = "pgrep spotify"
 format-font = 3
 format-background = ${colors.color2}
 format-foreground = ${colors.background}
 format-padding = 1
-; Default
-hook-0 = echo ""
-; Playing
-hook-1 = echo ""
-; Paused
-hook-2 = echo ""
-initial = 2
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org. mpris.MediaPlayer2.Player.PlayPause"
+tail = true
+interval = 0
+click-left = "playerctl -p spotify play-pause"
 
 
 [module/spotify]
-type = custom/ipc
+type = custom/script
+exec = playerctl -p spotify metadata --format '{{artist}}: {{title}}'
+exec-if = "pgrep spotify"
 format-padding = 2
-; Default
-hook-0 = echo ""
-; Playing/paused show song name and artist
-hook-1 = python3 ~/.scripts/spotify/spotify_status.py
-initial=2
-click-left = i3-msg '[class="Spotify"] focus'
-
+tail = true
+interval = 1
 
 [settings]
 screenchange-reload = true
