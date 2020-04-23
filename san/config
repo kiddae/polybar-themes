@@ -54,7 +54,7 @@ font-3=font\-logos:size=10;3
 font-4=FontAwesome5Brands:size=11;2
 
 modules-left = launcher i3 xwindow
-modules-right = spotify pulseaudio time powermenu
+modules-right = mpd pulseaudio time powermenu
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -175,6 +175,15 @@ ramp-volume-2 = ""
 label-muted = " muted"   
 label-muted-background = ${colors.background}
 label-muted-padding = 2
+
+[module/mpd]
+type = custom/script
+exec = mpc | head -n1
+format-margin = 4
+format =     <label>
+tail = true
+interval = 1
+click-left = mpc toggle
 
 [module/temperature]
 type = internal/temperature

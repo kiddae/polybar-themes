@@ -17,7 +17,63 @@ At this time, all my themes use `Xresources` colors, for `pywal` integration.
 
 They are mostly made for `i3`, but copy-pasting the `i3` module to `bspwm` shouldn't be too complicated.
 
+## blocks
+
+*screenshot*
+![square-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/blocks/scrot-square.png "Screenshot, in the default config of the theme")
+
+*another one*
+![scrot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/blocks/scrot2.png "Screenshot, another layout")
+
+This one is composed of three bars. For that manner, `override-redirect` was set to `false`. So, in order to have your windows not overlapping on the bars, set your wm's top gaps to some value (I use `85`)
+
+This theme works very well with rounded borders. To enable them, uncomment the `radius=20` lines in each bar. To have the shadows follow the shape of the bars, set `clear-shadow` to `false` in your `compton.conf`.
+
+*screenshot, with rounded borders*
+![rounded-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/blocks/scrot-rounded.png "Screenshot, with rounded borders")
+
+
+**Fonts used:**
++ SF Mono
++ Font Awesome 5
++ IPAGothic (for japanese glyphs)
+
+**Modules:**
++ `wsnumber` : displays the workspace number. It uses a script included in the repo, uses `jq` as a dependency (credits to Airblader, on some random forum). Works only on i3. For other wms, you might want to use `wmctrl` or something else.
++ `xwindow` : displays window name
++ `mpd` : mpd controller.
++ `previous`, `playpause`, `next` and `spotify` : spotify controller using `playerctl` 
++ `pulseaudio` : controls volume w/ `pulseaudio`
++ `date` : displays date and time (24h format)
++ `power` : launches a `rofi` instance, script to be found on my scripts repo (might not really look well with this theme...)
++ *(optional)* `i3` : manages i3 workspaces with some cool round icons, just place it on the `i3` bar instead of `wsnumber`. You can see it in the second screenshot
+
+## san
+
+*screenshot*
+![scrot1](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/san/scrot1.png "Screenshot n°1")
+
+*another screenshot*
+![scrot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/san/scrot2.png "Screenshot n°2")
+
+**Fonts used:**
++ SF Pro Display
++ Font Awesome 5 Brands
++ Material Icons
++ font-logo
++ IPAGothic (for japanese glyphs)
+
+**Modules:**
++ `launcher` : launches a `rofi` instance, it is a script you can find in my repo.
++ `i3` : i3 workspaces, basically.
++ `mpd` : `mpd` controller
++ `spotify` : shows current playing song on  spotify (uses `playerctl`)
++ `cpu`, `memory`, `date` : pretty self-explanatory.
++ `pulseaudio` : controls volume, requires `pulseaudio` (obviously)
++ `power` : launches a `rofi` instance that has basic power controls (script to be found in my repo)
+
 ## arch-blur
+***I don't use this one anymore, but it's still there if you want to use it***
 *bar screenshot*
 ![bar-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/arch-blur/bar-scrot.png "Bar Screenshot")
 
@@ -41,29 +97,3 @@ To get that blur, you need `compton-tryone`, include `dock` in the blur section 
 + `pulseaudio` : controls volume, requires `pulseaudio` (obviously)
 + `power` : launches a `rofi` instance that has basic power controls (script to be found in my repo)
 
-## blocks
-*screenshot*
-![square-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/blocks/scrot-square.png "Screenshot, in the default config of the theme")
-
-This one is composed of three bars. For that manner, `override-redirect` was set to `false`. So, in order to have your windows not overlapping on the bars, set your wm's top gaps to some value (I use `85`)
-
-This theme works very well with rounded borders. To enable them, uncomment the `radius=22.5` lines in each bar. To have the shadows follow the shape of the bars, set `clear-shadow` to `false` in your `compton.conf`.
-
-*screenshot, with rounded borders*
-![rounded-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/blocks/scrot-rounded.png "Screenshot, with rounded borders")
-
-
-**Fonts used:**
-+ SF Mono
-+ Font Awesome 5
-+ IPAGothic (for japanese glyphs)
-
-**Modules:**
-+ `wsnumber` : displays the workspace number. It uses a script included in the repo, uses `jq` as a dependency (credits to Airblader, on some random forum). Works only on i3. For other wms, you might want to use `wmctrl` or something else.
-+ `xwindow` : displays window name
-+ `mpd` : mpd controller.
-+ `previous`, `playpause`, `next` and `spotify` : spotify controller, uses [this](https://github.com/dietervanhoof/polybar-spotify-controls). I changed the path provided on the original thing, feel free to adapt.
-+ `pulseaudio` : controls volume w/ `pulseaudio`
-+ `date` : displays date and time (24h format)
-+ `power` : launches a `rofi` instance, script to be found on my scripts repo (might not really look well with this theme...)
-+ *(optional)* `i3` : manages i3 workspaces with some cool round icons, just place it on the `i3` bar instead of `wsnomber`. You can see it in the second screenshot
