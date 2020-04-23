@@ -73,7 +73,9 @@ This theme works very well with rounded borders. To enable them, uncomment the `
 + `power` : launches a `rofi` instance that has basic power controls (script to be found in my repo)
 
 ## arch-blur
+
 ***I don't use this one anymore, but it's still there if you want to use it***
+
 *bar screenshot*
 ![bar-screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/arch-blur/bar-scrot.png "Bar Screenshot")
 
