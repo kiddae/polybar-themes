@@ -33,25 +33,26 @@ background = ${xrdb:color0:#000}
 enable-ipc=true
 height = 35
 width = 100%
-radius-bottom = 15
 padding = 4
 ;bottom = true
+radius-bottom = 15
 
 background = ${colors.background}
 ;background = ${colors.primary}
 foreground = ${colors.foreground}
-border-size = 15
+border-size = 10
 border-top-size = 0
 border-bottom-size = 0
 border-color = #0000
 
 line-size = 2
 
-font-0=SF Pro Display:style=Regular:size=11;3
-font-1=SF Pro Display:style=Semibold:size=11;3
+font-0=SF Compact Display:style=Regular:size=11;3
+font-1=SF Compact Display:style=Semibold:size=11;3
 font-2=Material Icons:size=13;5
 font-3=font\-logos:size=10;3
 font-4=FontAwesome5Brands:size=11;2
+font-5=IPAGothic:size=11;4
 
 modules-left = launcher i3 xwindow
 modules-right = mpd pulseaudio time powermenu
@@ -61,6 +62,7 @@ scroll-down = i3wm-wsprev
 
 wm-restack = i3
 override-redirect = false
+
 
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
@@ -113,8 +115,6 @@ label-unfocused-padding = 4
 label-urgent = !
 label-urgent-padding = 5
 label-urgent-underline = ${colors.background}
-label-urgent-background = ${colors.foreground}
-label-urgent-foreground = ${colors.background}
 label-urgent-font = 2
 
 ;ws-icon-0 = 1;
@@ -207,7 +207,7 @@ type = custom/menu
 expand-right = false
 
 format-margin = 2
-format-spacing = 1
+format-spacing = 2
 
 label-open = 
 label-close = 
@@ -232,36 +232,6 @@ menu-3-0-exec = poweroff
 menu-1-0 = 
 menu-1-0-exec = i3-msg exit || openbox --exit
 
-;Spotify modules
-
-[module/previous]
-type = custom/script
-format-margin = 0
-exec = echo ""
-exec-if = "pgrep spotify"
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-
-
-[module/next]
-type = custom/script
-format-margin = 0
-exec = echo ""
-exec-if = "pgrep spotify"
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
-[module/playpause]
-type = custom/ipc
-format-margin = 0
-; Default
-hook-0 = echo ""
-; Playing
-hook-1 = echo ""
-; Paused
-hook-2 = echo ""
-initial = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-
-
 [module/spotify]
 type = custom/script
 format-margin = 4
@@ -269,6 +239,7 @@ format =    <label>
 exec = playerctl metadata --format '{{artist}}: {{title}}'
 tail = true
 interval = 1
+click-left = "playerctl play-pause"
 
 [settings]
 screenchange-reload = true
@@ -276,7 +247,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-pseudo-transparency = true
+pseudo-transparency = false
 
 [global/wm]
 margin-top = 0

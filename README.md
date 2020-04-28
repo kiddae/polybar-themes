@@ -17,6 +17,23 @@ At this time, all my themes use `Xresources` colors, for `pywal` integration.
 
 They are mostly made for `i3`, but copy-pasting the `i3` module to `bspwm` shouldn't be too complicated.
 
+## cherryblocks
+
+*screenshot, the thick borders version*
+![scrot1](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/cherryblocks/scrot.png "Screenshot, the thick borders version")
+
+*another screenshot, the reasonable borders version*
+![scrot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/cherryblocks/scrot2.png "Screenshot, the reasonable borders version")
+
+a renewed version of the theme below `blocks`. Made for tiny bitmap fonts but *thicc* bars and borders.
+
+**Fonts used:**
++ cherry
++ Font Awesome 5
++ IPAGothic (for japanese glyphs)
+
+modules are the same as below.
+
 ## blocks
 
 *screenshot*
@@ -47,7 +64,6 @@ This theme works very well with rounded borders. To enable them, uncomment the `
 + `date` : displays date and time (24h format)
 + `power` : launches a `rofi` instance, script to be found on my scripts repo (might not really look well with this theme...)
 + *(optional)* `i3` : manages i3 workspaces with some cool round icons, just place it on the `i3` bar instead of `wsnumber`. You can see it in the second screenshot
-
 ## san
 
 *screenshot*
@@ -57,7 +73,7 @@ This theme works very well with rounded borders. To enable them, uncomment the `
 ![scrot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/san/scrot2.png "Screenshot n°2")
 
 **Fonts used:**
-+ SF Pro Display
++ SF Compact Text
 + Font Awesome 5 Brands
 + Material Icons
 + font-logo
@@ -70,7 +86,7 @@ This theme works very well with rounded borders. To enable them, uncomment the `
 + `spotify` : shows current playing song on  spotify (uses `playerctl`)
 + `cpu`, `memory`, `date` : pretty self-explanatory.
 + `pulseaudio` : controls volume, requires `pulseaudio` (obviously)
-+ `power` : launches a `rofi` instance that has basic power controls (script to be found in my repo)
++ `power` : polybar-ish menu
 
 ## arch-blur
 
