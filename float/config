@@ -19,9 +19,7 @@
 [colors]
 
 background = ${xrdb:background:#000000}
-color1 = ${xrdb:color1:#ff5555}
-color2 = ${xrdb:color4:#ff5555}
-color3 = ${xrdb:color7:#ff5555}
+foreground = ${xrdb:color7:#ff5555}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -31,34 +29,40 @@ color3 = ${xrdb:color7:#ff5555}
 
 [bar/bar]
 enable-ipc=true
-height = 35
-width = 100%
-bottom = true
+height = 30
+width = 80%
+offset-x = 10%
+offset-y = 10
+radius = 15
+border-size = 0
+border-color = ${colors.foreground}
+
 
 background = ${colors.background}
 ;background = ${colors.primary}
-foreground = ${colors.color1}
+foreground = ${colors.foreground}
 
 line-size = 2
 
+padding=2
 font-0=Iosevka:size=10;3
-font-1=Font Awesome 5 Free Solid:size=8;3
-font-2=Font Awesome 5 Free Regular:size=8;3
-font-3=Font Awesome 5 Brands:size=8;3
-font-4=font\-logos:size=11;3
-font-5=IPAGothic:size=11:antialias=true;3
+font-1=Font Awesome 5 Free Solid:size=8;2
+font-2=Font Awesome 5 Free Regular:size=8;2
+font-3=Font Awesome 5 Brands:size=8;2
+font-4=font\-logos:size=10;2
+font-5=IPAGothic:size=11;2
 
-modules-left = launcher i3 
+modules-left = launcher bspwm 
 ; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
 ;modules-center = previous playpause next spotify
 ; Mpd
 modules-center = mpd
 modules-right = cpu memory time pulseaudio power
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+scroll-up = bspwn-wsnext
+scroll-down = bspwn-wsprev
 
-wm-restack = i3
+wm-restack = bspwm
 override-redirect = false
 
 ;                      _       _           
@@ -71,22 +75,22 @@ override-redirect = false
 type=custom/text
 content = 
 content-font=5
-content-foreground=${colors.color1}
-content-padding=2
+content-foreground=${colors.foreground}
+content-padding=3
 click-left=launcher
 ;The script above is to be found here : https://github.com/ngynLk/scripts
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:40:...%
-label-color1 = ${colors.color1} 
+label-color1 = ${colors.foreground} 
 label-background = ${colors.background} 
 label-padding = 2
 
-[module/i3]
-type = internal/i3
+[module/bspwm]
+type = internal/bspwm
 format = <label-state> <label-mode>
-format-foreground = ${colors.color1}
+format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 index-sort = true
 
@@ -94,16 +98,18 @@ enable-click = true
 reverse-scroll = false
 
 label-focused = %index%
-label-focused-overline = ${colors.color1}
+label-focused-underline = ${colors.foreground}
 label-focused-padding = 2
 
-label-unfocused = %index%
-label-unfocused-padding = 2
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-empty =
 
 label-urgent = 
 label-urgent-padding = 2
 label-urgent-foreground = ${colors.background}
-label-urgent-background = ${colors.color1}
+label-urgent-background = ${colors.foreground}
 label-urgent-overline = ${colors.background}
 label-urgent-font = 2
 
@@ -116,7 +122,7 @@ label-urgent-font = 2
 [module/power]
 type = custom/text
 content = 
-content-foreground = ${colors.color3}
+content-foreground = ${colors.foreground}
 click-left = powermenu
 ;The script above is to be found here : https://github.com/ngynLk/scripts
 content-padding = 2
@@ -127,19 +133,19 @@ host = 127.0.0.1
 port = 6600
 format-online = <icon-prev> <toggle> <icon-next> <label-song> <label-time>
 format-online-padding = 2
-format-online-foreground = ${colors.color2}
+format-online-foreground = ${colors.foreground}
 format-online-background = ${colors.background}
-label-song-foreground = ${colors.color2}
+label-song-foreground = ${colors.foreground}
 label-song-background = ${colors.background}
 label-song-padding = 2
-label-time-foreground = ${colors.color2}
+label-time-foreground = ${colors.foreground}
 label-time-background = ${colors.background}
 label-time-padding = 1
 
 format-offline = <label-offline>
 label-offline =  offline
 format-offline-padding = 2
-format-offline-foreground = ${colors.color2}
+format-offline-foreground = ${colors.foreground}
 format-offline-background = ${colors.background}
 
 bar-progress-width = 35
@@ -166,7 +172,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-padding = 2
-format-foreground = ${colors.color3}
+format-foreground = ${colors.foreground}
 label = %percentage%%
 
 [module/memory]
@@ -174,7 +180,7 @@ type = internal/memory
 interval = 2
 format-padding = 2
 format-prefix = " "
-format-foreground = ${colors.color3}
+format-foreground = ${colors.foreground}
 label = %percentage_used%%
 
 [module/wlan]
@@ -184,19 +190,19 @@ interval = 3.0
 
 format-connected =  <label-connected>
 label-connected = %essid%
-label-connected-color1 = ${colors.color1}
+label-connected-color1 = ${colors.foreground}
 
 ;format-disconnected =
 format-disconnected = <label-disconnected>
 label-disconnected = %ifname% disconnected
-label-disconnected-color1 = ${colors.color1}
+label-disconnected-color1 = ${colors.foreground}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-color1 = ${colors.color1}
+ramp-signal-color1 = ${colors.foreground}
 
 [module/eth]
 type = internal/network
@@ -222,7 +228,7 @@ time = "%H:%M"
 date = "%d %b"
 
 label =  %date%, %time%
-label-foreground = ${colors.color3}
+label-foreground = ${colors.foreground}
 label-background = ${colors.background}
 label-padding = 2
 
@@ -232,8 +238,8 @@ type = internal/pulseaudio
 
 format-margin = 1
 format-volume = <ramp-volume><label-volume>
-label-volume = %percentage:3:3%%
-format-volume-foreground = ${colors.color3}
+label-volume = %percentage:4:4%%
+format-volume-foreground = ${colors.foreground}
 format-volume-background = ${colors.background}
 format-volume-padding = 2
 use-ui-max = false
@@ -246,7 +252,7 @@ ramp-volume-2 = ""
 
 label-muted = ""   
 label-muted-background = ${colors.background}
-label-muted-foreground = ${colors.color3}
+label-muted-foreground = ${colors.foreground}
 label-muted-padding = 2
 
 [module/temperature]
@@ -273,7 +279,7 @@ expand-right = true
 format-spacing = 1
 format-margin = 0
 format-background = ${colors.background}
-format-foreground = ${colors.color3}
+format-foreground = ${colors.foreground}
 format-padding = 2
 
 label-open = 
@@ -305,7 +311,7 @@ menu-1-0-exec = i3-msg exit || openbox --exit
 type = custom/script
 format-font = 2
 format-padding = 2
-format-foreground = ${colors.color2}
+format-foreground = ${colors.foreground}
 exec = echo ""
 exec-if = "pgrep spotify"
 click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
@@ -315,7 +321,7 @@ click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org
 type = custom/script
 format-font = 2
 format-padding = 2
-format-foreground = ${colors.color2}
+format-foreground = ${colors.foreground}
 exec = echo ""
 exec-if = "pgrep spotify"
 click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
@@ -324,7 +330,7 @@ click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org
 type = custom/ipc
 format-font = 2
 format-padding = 0
-format-foreground = ${colors.color2}
+format-foreground = ${colors.foreground}
 ; Default
 hook-0 = echo ""
 ; Playing
@@ -337,7 +343,7 @@ click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org
 
 [module/spotify]
 type = custom/ipc
-format-foreground = ${colors.color2}
+format-foreground = ${colors.foreground}
 ; Default
 hook-0 = echo ""
 ; Playing/paused show song name and artist

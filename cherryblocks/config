@@ -32,12 +32,12 @@ color3 = ${xrdb:color6}
 [bar/base]
 enable-ipc = true
 font-0=cherry:size=14:antialias=true;3
-font-1=FontAwesome5Free:style=Regular:pixelsize=8:antialias=true;2
-font-2=FontAwesome5Free:style=Solid:pixelsize=8:antialias=true;2
+font-1=FontAwesome5Free:style=Regular:pixelsize=8:antialias=true;3
+font-2=FontAwesome5Free:style=Solid:pixelsize=8:antialias=true;3
 font-3=IPAGothic:style=Regular:size=11:antialias=true;3
 
 bottom = true
-border-size = 4
+border-size = 2
 border-color = ${self.foreground}
 
 height = 50
@@ -45,10 +45,10 @@ height = 50
 ;Works very well with a radius like this! Put it on every bar.
 
 background = ${colors.background}
-override-redirect=true
+override-redirect=false
 offset-y = 10
 
-wm-restack = i3
+wm-restack = bspwm
 
 [bar/ws]
 inherit = bar/base
@@ -60,15 +60,15 @@ foreground = ${colors.color1}
 offset-x = 10
 
 ; bspwm
-; modules-left = bspwm xwindow
-; scroll-up = bspwm-desknext
-; scroll-down = bspwm-deskprev
+modules-left = bspwm xwindow
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
 
 ; i3
-modules-left = i3 wsnumber xwindow
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
-
+; modules-left = i3 wsnumber xwindow
+; scroll-up = i3wm-wsnext
+; scroll-down = i3wm-wsprev
+ 
 
 [bar/music]
 inherit = bar/base
@@ -179,12 +179,9 @@ label-focused-font = 3
 label-focused-foreground = ${colors.background}
 label-focused-padding = 1
 
-label-empty = 
-label-empty-font = 2
-label-empty-foreground = ${colors.background}
-label-empty-padding = 1
+label-empty = 
 
-label-occupied = 
+label-occupied = 
 label-occupied-font = 2
 label-occupied-padding = 1
 label-occupied-foreground = ${colors.background}

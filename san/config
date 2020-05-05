@@ -54,14 +54,20 @@ font-3=font\-logos:size=10;3
 font-4=FontAwesome5Brands:size=11;2
 font-5=IPAGothic:size=11;4
 
-modules-left = launcher i3 xwindow
 modules-right = mpd pulseaudio time powermenu
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+; i3
+; modules-left = launcher i3 xwindow
+; scroll-up = i3wm-wsnext
+; scroll-down = i3wm-wsprev
+; wm-restack = i3
 
-wm-restack = i3
-override-redirect = false
+; bspwm
+modules-left = launcher bspwm xwindow
+scroll-up = bspwm-wsnext
+scroll-down = bspwm-wsprev
+wm-restack = bspwm
+ override-redirect = false
 
 
 ;                      _       _           
@@ -111,6 +117,37 @@ label-focused-font = 2
 
 label-unfocused = %index%
 label-unfocused-padding = 4
+
+label-urgent = !
+label-urgent-padding = 5
+label-urgent-underline = ${colors.background}
+label-urgent-font = 2
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-9 = 10;
+;ws-icon-default = 
+
+[module/bspwm]
+type = internal/bspwm
+format = <label-state>
+format-margin = 4
+index-sort = true
+
+enable-click = true
+reverse-scroll = false
+enable-scroll = true
+
+label-focused = %index%
+label-focused-underline = ${colors.foreground}
+label-focused-padding = 4
+label-focused-font = 2
+
+label-empty =
+
+label-occupied = %index%
+label-occupied-padding = 4
 
 label-urgent = !
 label-urgent-padding = 5
