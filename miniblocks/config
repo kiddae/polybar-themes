@@ -1,0 +1,216 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+highlight = ${xrdb:color15:#222}
+
+;  _                    
+; | |__   __ _ _ __ ___ 
+; | '_ \ / _` | '__/ __|
+; | |_) | (_| | |  \__ \
+; |_.__/ \__,_|_|  |___/
+
+[bar/base]
+enable-ipc = true
+font-0=Cozette:pixelsize=10;2
+font-1=FontAwesome5Free:style=Solid:pixelsize=8:antialias=true;2
+font-2=IPAGothic:style=Regular:size=10:antialias=true;3
+
+padding = 2
+border-size = 0
+border-color = ${colors.foreground}
+
+height = 30
+;radius = 20
+;Works very well with a radius like this! Put it on every bar.
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+override-redirect=false
+offset-y = 10
+
+wm-restack = bspwm
+
+[bar/ws]
+inherit = bar/base
+width = 14.5%
+
+
+offset-x = 10
+line-size = 1
+
+modules-left = bspwm
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+[bar/music]
+inherit = bar/base
+enable-ipc = true
+width = 25%
+
+offset-x = 37.5%
+
+; Spotify (uses playerctl)
+; modules-left = previous playpause next 
+; modules-center = spotify
+; Mpd
+modules-center = mpd
+
+[bar/tray]
+inherit = bar/base
+width = 9%
+
+offset-x = 90.5%
+
+modules-left = pulseaudio time 
+
+;                      _       _           
+;  _ __ ___   ___   __| |_   _| | ___  ___ 
+; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+; | | | | | | (_) | (_| | |_| | |  __/\__ \
+; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
+                                         
+[module/wsnumber]
+type = custom/script
+exec = bspc query -D -d focused --names
+tail = true
+interval = 0
+format-margin = 2
+format = "<label>"
+scroll-up = bspc desktop -f next
+scroll-down = bspc desktop -f prev
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:33:...%
+label-margin = 2
+
+[module/bspwm]
+type = internal/bspwm
+reverse-scroll = false
+
+label-focused = %name%
+label-focused-underline = ${colors.highlight}
+label-focused-foreground = ${colors.highlight}
+label-focused-padding = 1
+
+label-occupied = %name%
+label-occupied-foreground = ${colors.highlight}
+label-occupied-padding = 1
+
+label-empty = %name%
+label-empty-padding = 1
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+format-online = <icon-prev> <toggle> <icon-next>   <label-song>  <label-time>
+format-online-margin = 2
+
+format-offline = <label-offline>
+label-offline =   offline
+format-offline-padding = 2
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 50
+label-song-ellipsis = true
+
+[module/time]
+type = internal/date
+interval = 10
+format-margin = 2
+
+time = "%H:%M"
+date = "%d %b"
+
+label = %date%, %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-margin = 1
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3:3%%
+use-ui-max = false
+interval = 5
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
+
+label-muted = "  muted"   
+label-muted-padding = 0
+
+;Spotify modules
+
+[module/previous]
+type = custom/script
+exec = echo " "
+exec-if = "pgrep spotify"
+click-left = "playerctl previous"
+
+
+[module/next]
+type = custom/script
+exec = echo "  "
+exec-if = "pgrep spotify"
+click-left = "playerctl next"
+
+[module/playpause]
+type = custom/script
+exec = spotifystatus
+exec-if = "pgrep spotify"
+format-padding = 1
+tail = true
+interval = 0
+click-left = "playerctl -p spotify play-pause"
+
+
+[module/spotify]
+type = custom/script
+exec = playerctl -p spotify metadata --format '{{artist}} - {{title}}'
+exec-if = "pgrep spotify"
+format-padding = 1
+tail = true
+interval = 1
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
+                      
+

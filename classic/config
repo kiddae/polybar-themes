@@ -18,8 +18,8 @@
 
 [colors]
 
-background = ${xrdb:background:#000000}
-foreground = ${xrdb:foreground:#ff5555}
+background = ${xrdb:color0:#000000}
+foreground = ${xrdb:color15:#ff5555}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -36,16 +36,14 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 padding=0
-font-0=Iosevka:size=11;3
-font-1=Font Awesome 5 Free Regular:size=11;3
-font-2=Font Awesome 5 Free Solid:size=11;3
-font-3=IPAGothic:size=12:antialias=true;3
+font-0=Iosevka Nerd Font:size=11;3
+font-1=IPAGothic:size=12:antialias=true;3
 
 modules-left =  bspwm 
 ; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
 ;modules-center = previous playpause next spotify
 ; Mpd
-modules-center = time
+modules-center = time 
 modules-right = mpd pulseaudio
 
 scroll-up = bspwn-wsnext
@@ -76,15 +74,14 @@ index-sort = true
 enable-click = true
 reverse-scroll = false
 
-label-focused = 
-label-focused-font = 3
+label-focused = 
 label-focused-padding = 1
 
-label-occupied = 
+label-occupied = 
 label-occupied-padding = 1
 
 
-label-empty = 
+label-empty = 
 label-empty-padding = 1
 
 
@@ -92,7 +89,7 @@ label-empty-padding = 1
 type = internal/mpd
 host = 127.0.0.1
 port = 6600
-format-online = "<icon-prev> <toggle> <icon-next> <label-song>"
+format-online = "<icon-prev>  <toggle>  <icon-next> <label-song>"
 format-online-padding = 2
 label-song-padding = 1
 label-song = %artist%: %title%
@@ -102,7 +99,7 @@ label-offline =  offline
 format-offline-foreground = ${colors.foreground}
 format-offline-background = ${colors.background}
 
-icon-prev = " "
+icon-prev = ""
 icon-stop = 
 icon-play = 
 icon-pause = 
@@ -129,8 +126,9 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlx0013eff2094e
+interface = wlp0s20u1
 interval = 3.0
+
 
 format-connected =  <label-connected>
 label-connected = %essid%
@@ -190,7 +188,7 @@ ramp-volume-2 = ""
 
 
 format-muted-padding = 2
-label-muted = " muted"   
+label-muted = "  muted"   
 label-muted-background = ${colors.background}
 label-muted-foreground = ${xrdb:color6:#fff}
 
@@ -289,6 +287,67 @@ hook-0 = echo ""
 hook-1 = python3 ~/.scripts/spotify/spotify_status.py
 initial = 2
 click-left = i3-msg '[class="Spotify"] focus'
+
+
+[module/battery]
+type = internal/battery
+full-at = 100
+time-format = %H:%M
+battery = BAT0
+adapter = ADP0
+format-charging = <animation-charging> <label-charging>
+;label-charging = %percentage%% (%time%)
+label-charging = %percentage%%
+format-discharging = <ramp-capacity> <label-discharging>
+;label-discharging = %percentage%% (%time%)
+label-discharging = %percentage%%
+format-full = <label-full>
+;label-charging-underline = ${colors.tertiary}
+;label-discharging-underline = ${colors.tertiary}
+
+
+format-charging-underline = ${colors.foreground}
+format-discharging-underline = ${colors.foreground}
+format-full-prefix = " "
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+ramp-capacity-0-foreground = ${colors.foreground}
+ramp-capacity-foreground   = ${colors.foreground}
+bar-capacity-width = 10
+
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
+animation-charging-3 = ""
+animation-charging-4 = ""
+
+animation-charging-framerate = 750
+
+label-font = 1
+
+; ramp-capacity-0-underline = ${colors.tertiary}
+; ramp-capacity-1-underline = ${colors.tertiary}
+; ramp-capacity-2-underline = ${colors.tertiary}
+; ramp-capacity-3-underline = ${colors.tertiary}
+; ramp-capacity-4-underline = ${colors.tertiary}
+;
+; animation-charging-0-underline = ${colors.tertiary}
+; animation-charging-1-underline = ${colors.tertiary}
+; animation-charging-2-underline = ${colors.tertiary}
+; animation-charging-3-underline = ${colors.tertiary}
+; animation-charging-4-underline = ${colors.tertiary}
+
+; Uncomment these for anmated discharging battery underline
+; ramp-capacity-0-underline = ${colors.primary}
+; ramp-capacity-1-underline = ${colors.primary}
+; ramp-capacity-2-underline = ${colors.tertiary}
+; ramp-capacity-3-underline = ${colors.tertiary}
+; ramp-capacity-4-underline = ${colors.tertiary}
+
 
 [settings]
 screenchange-reload = true

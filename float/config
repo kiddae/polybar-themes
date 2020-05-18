@@ -45,7 +45,7 @@ foreground = ${colors.foreground}
 line-size = 2
 
 padding=2
-font-0=Iosevka:size=10;3
+font-0=cherry:size=14;3
 font-1=Font Awesome 5 Free Solid:size=8;2
 font-2=Font Awesome 5 Free Regular:size=8;2
 font-3=Font Awesome 5 Brands:size=8;2
