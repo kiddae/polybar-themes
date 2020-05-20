@@ -19,7 +19,7 @@
 [colors]
 
 background = ${xrdb:background:#000000}
-foreground = ${xrdb:color7:#ff5555}
+foreground = ${xrdb:foreground:#ff5555}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -30,34 +30,30 @@ foreground = ${xrdb:color7:#ff5555}
 [bar/bar]
 enable-ipc=true
 height = 30
-width = 80%
-offset-x = 10%
+width = 12%
+offset-x = 87.5%
 offset-y = 10
-radius = 15
+;radius = 10
 border-size = 0
 border-color = ${colors.foreground}
+module-margin = 2
 
 
 background = ${colors.background}
-;background = ${colors.primary}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size = 1
 
-padding=2
-font-0=cherry:size=14;3
-font-1=Font Awesome 5 Free Solid:size=8;2
-font-2=Font Awesome 5 Free Regular:size=8;2
-font-3=Font Awesome 5 Brands:size=8;2
-font-4=font\-logos:size=10;2
+padding=3
+font-0=Cozette:size=9;2
+; font-1=Font Awesome 5 Free Solid:size=8;2
+; font-2=Font Awesome 5 Free Regular:size=8;2
+; font-3=Font Awesome 5 Brands:size=8;2
+; font-4=font\-logos:size=10;2
 font-5=IPAGothic:size=11;2
 
-modules-left = launcher bspwm 
-; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
-;modules-center = previous playpause next spotify
 ; Mpd
-modules-center = mpd
-modules-right = cpu memory time pulseaudio power
+modules-center = bspwm pulseaudio time 
 
 scroll-up = bspwn-wsnext
 scroll-down = bspwn-wsprev
@@ -73,7 +69,7 @@ override-redirect = false
                                          
 [module/launcher]
 type=custom/text
-content = 
+content = 
 content-font=5
 content-foreground=${colors.foreground}
 content-padding=3
@@ -89,35 +85,18 @@ label-padding = 2
 
 [module/bspwm]
 type = internal/bspwm
-format = <label-state> <label-mode>
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+format = <label-state>
 index-sort = true
 
 enable-click = true
 reverse-scroll = false
 
 label-focused = %index%
-label-focused-underline = ${colors.foreground}
-label-focused-padding = 2
 
-label-occupied = %index%
-label-occupied-padding = 2
+label-occupied = 
 
-label-empty =
+label-empty = 
 
-label-urgent = 
-label-urgent-padding = 2
-label-urgent-foreground = ${colors.background}
-label-urgent-background = ${colors.foreground}
-label-urgent-overline = ${colors.background}
-label-urgent-font = 2
-
-;ws-icon-0 = 1;
-;ws-icon-1 = 2;
-;ws-icon-2 = 3;
-;ws-icon-9 = 10;
-;ws-icon-default = 
 
 [module/power]
 type = custom/text
@@ -131,40 +110,18 @@ content-padding = 2
 type = internal/mpd
 host = 127.0.0.1
 port = 6600
-format-online = <icon-prev> <toggle> <icon-next> <label-song> <label-time>
+format-online = <icon-prev> <toggle> <icon-next> <label-song>
 format-online-padding = 2
-format-online-foreground = ${colors.foreground}
-format-online-background = ${colors.background}
-label-song-foreground = ${colors.foreground}
-label-song-background = ${colors.background}
-label-song-padding = 2
-label-time-foreground = ${colors.foreground}
-label-time-background = ${colors.background}
-label-time-padding = 1
-
-format-offline = <label-offline>
-label-offline =  offline
-format-offline-padding = 2
-format-offline-foreground = ${colors.foreground}
-format-offline-background = ${colors.background}
-
-bar-progress-width = 35
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
+label-song-padding = 1
+label-song = %title%
 
 icon-prev = 
 icon-stop = 
 icon-play = 
 icon-pause = 
 icon-next = 
-;icon-prev = 
-;icon-stop = 
-;icon-play = 
-;icon-pause = 
-;icon-next = 
 
-label-song-maxlen = 75
+label-song-maxlen = 30
 label-song-ellipsis = true
 
 [module/cpu]
@@ -225,23 +182,23 @@ interval = 10
 format-margin = 0
 
 time = "%H:%M"
-date = "%d %b"
+date = "%a %d %b"
 
-label =  %date%, %time%
+label = %date%, %time%
 label-foreground = ${colors.foreground}
 label-background = ${colors.background}
-label-padding = 2
+;label-padding = 2
 
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-margin = 1
-format-volume = <ramp-volume><label-volume>
-label-volume = %percentage:4:4%%
+;format-margin = 1
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3:3%%
 format-volume-foreground = ${colors.foreground}
 format-volume-background = ${colors.background}
-format-volume-padding = 2
+format-volume-padding = 0
 use-ui-max = false
 interval = 5
 
@@ -250,60 +207,10 @@ ramp-volume-1 = ""
 ramp-volume-2 = ""
 
 
-label-muted = ""   
+label-muted = "  muted"   
 label-muted-background = ${colors.background}
 label-muted-foreground = ${colors.foreground}
-label-muted-padding = 2
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format =  <label>
-format-warn = <ramp> <label-warn>
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-color1 = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-format-margin = 0
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-format-padding = 2
-
-label-open = 
-label-close = 
-label-separator = |
-
-; reboot
-menu-0-1 = 
-menu-0-1-exec = menu-open-2
-; poweroff
-menu-0-2 = 
-menu-0-2-exec = menu-open-3
-; logout
-menu-0-0 = 
-menu-0-0-exec = menu-open-1
-
-menu-2-0 = 
-menu-2-0-exec = reboot
-
-menu-3-0 = 
-menu-3-0-exec = poweroff
-
-menu-1-0 = 
-menu-1-0-exec = i3-msg exit || openbox --exit
+label-muted-margin = 1
 
 ;Spotify modules
 
@@ -365,4 +272,3 @@ margin-bottom = 0
 
 ; vim:ft=dosini
                       
-
