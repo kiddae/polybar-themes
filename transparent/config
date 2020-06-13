@@ -18,10 +18,9 @@
 
 [colors]
 
-;background = #fff
-;foreground = #000
 foreground = ${xrdb:foreground:#fff}
-background = ${xrdb:background:#000}
+;foreground = ${xrdb:background:#000}
+background = #0000
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -31,20 +30,13 @@ background = ${xrdb:background:#000}
 
 [bar/bar]
 enable-ipc=true
-height = 35
-width = 98%
-offset-x = 1%
-padding = 4
+height = 40
+width = 100%
 ;bottom = true
-radius-bottom = 15
+padding = 3
 
 background = ${colors.background}
-;background = ${colors.primary}
 foreground = ${colors.foreground}
-;border-size = 10
-border-top-size = 0
-border-bottom-size = 0
-border-color = #0000
 
 line-size = 2
 
@@ -146,9 +138,6 @@ label-focused-padding = 4
 label-focused-font = 2
 
 label-empty =
-
-label-urgent = 
-label-urgent-padding = 4
 
 label-occupied = %index%
 label-occupied-padding = 4

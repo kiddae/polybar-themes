@@ -19,7 +19,7 @@
 [colors]
 
 background = ${xrdb:background:#000000}
-foreground = ${xrdb:foreground:#ff5555}
+foreground = ${xrdb:foreground:#ffffff}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -30,10 +30,10 @@ foreground = ${xrdb:foreground:#ff5555}
 [bar/bar]
 enable-ipc=true
 height = 30
-width = 12%
-offset-x = 87.5%
+width = 13%
+offset-x = 86.5%
 offset-y = 10
-;radius = 10
+radius = 15
 border-size = 0
 border-color = ${colors.foreground}
 module-margin = 2
@@ -45,21 +45,24 @@ foreground = ${colors.foreground}
 line-size = 1
 
 padding=3
-font-0=Cozette:size=9;2
+font-0=Cozette:size=9:antialias=false;2
+font-1=Siji:size=9;2
 ; font-1=Font Awesome 5 Free Solid:size=8;2
 ; font-2=Font Awesome 5 Free Regular:size=8;2
 ; font-3=Font Awesome 5 Brands:size=8;2
 ; font-4=font\-logos:size=10;2
-font-5=IPAGothic:size=11;2
 
 ; Mpd
-modules-center = bspwm pulseaudio time 
+modules-left = bspwm 
+modules-center = pulseaudio 
+modules-right = time 
 
 scroll-up = bspwn-wsnext
 scroll-down = bspwn-wsprev
 
 wm-restack = bspwm
 override-redirect = false
+
 
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
@@ -91,7 +94,7 @@ index-sort = true
 enable-click = true
 reverse-scroll = false
 
-label-focused = %index%
+label-focused = %name:4:4:%
 
 label-occupied = 
 
@@ -207,10 +210,9 @@ ramp-volume-1 = ""
 ramp-volume-2 = ""
 
 
-label-muted = "  muted"   
+label-muted = " muted"   
 label-muted-background = ${colors.background}
 label-muted-foreground = ${colors.foreground}
-label-muted-margin = 1
 
 ;Spotify modules
 
@@ -264,7 +266,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = true
+pseudo-transparency = true
 
 [global/wm]
 margin-top = 0

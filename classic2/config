@@ -18,8 +18,24 @@
 
 [colors]
 
-background = ${xrdb:color0:#000000}
-foreground = ${xrdb:color15:#fff}
+background = ${xrdb:background:#000000}
+foreground = ${xrdb:foreground:#ffffff}
+color0 = ${xrdb:color0}
+color1 = ${xrdb:color1}
+color2 = ${xrdb:color2}
+color3 = ${xrdb:color3}
+color4 = ${xrdb:color4}
+color5 = ${xrdb:color5}
+color6 = ${xrdb:color6}
+color7 = ${xrdb:color7}
+color8 = ${xrdb:color8}
+color9 = ${xrdb:color9}
+color10 = ${xrdb:color10}
+color11 = ${xrdb:color11}
+color12 = ${xrdb:color12}
+color13 = ${xrdb:color13}
+color14 = ${xrdb:color14}
+color15 = ${xrdb:color15}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -35,18 +51,16 @@ background = ${colors.background}
 ;background = ${colors.primary}
 foreground = ${colors.foreground}
 
-padding=0
-font-0=Iosevka Nerd Font:size=11;3
-font-1=IPAGothic:size=12:antialias=true;3
-
-dpi = 100
+padding=3
+font-0=CozetteVector:size=9;3
+font-1=Wuncon Siji:size=9;3
 
 modules-left =  bspwm 
 ; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
 ;modules-center = previous playpause next spotify
 ; Mpd
 modules-center = time 
-modules-right = mpd pulseaudio
+modules-right = mpd cpu memory wlan pulseaudio
 
 scroll-up = bspwn-wsnext
 scroll-down = bspwn-wsprev
@@ -76,14 +90,16 @@ index-sort = true
 enable-click = true
 reverse-scroll = false
 
-label-focused = 
+label-focused = 
+label-focused-foreground = ${colors.color1}
 label-focused-padding = 1
 
-label-occupied = 
+label-occupied = 
+label-occupied-foreground = ${colors.color1}
 label-occupied-padding = 1
 
 
-label-empty = 
+label-empty = 
 label-empty-padding = 1
 
 
@@ -91,17 +107,17 @@ label-empty-padding = 1
 type = internal/mpd
 host = 127.0.0.1
 port = 6600
-format-online = "<icon-prev>  <toggle>  <icon-next> <label-song>"
+format-online = "<icon-prev> <toggle> <icon-next> <label-song>"
+format-online-foreground = ${colors.color14}
 format-online-padding = 2
 label-song-padding = 1
 label-song = %artist%: %title%
 
 format-offline = <label-offline>
 label-offline =  offline
-format-offline-foreground = ${colors.foreground}
-format-offline-background = ${colors.background}
+format-offline-foreground = ${colors.color6}
 
-icon-prev = 
+icon-prev = ""
 icon-stop = 
 icon-play = 
 icon-pause = 
@@ -115,38 +131,33 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-padding = 2
-format-foreground = ${colors.foreground}
+format-foreground = ${colors.color2}
 label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-padding = 2
-format-prefix = " "
-format-foreground = ${colors.foreground}
+format-prefix = " "
+format-foreground = ${colors.color3}
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
+; interface = wlan0
 interface = wlp0s20u1
 interval = 3.0
+format-connected-margin = 2
+format-connected-foreground = ${colors.color4}
 
 
 format-connected =  <label-connected>
 label-connected = %essid%
-label-connected-color1 = ${colors.foreground}
 
-;format-disconnected =
 format-disconnected = <label-disconnected>
+format-disconnected-margin = 2
+format-disconnected-foreground = ${colors.color5}
 label-disconnected = %ifname% disconnected
-label-disconnected-color1 = ${colors.foreground}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-color1 = ${colors.foreground}
 
 [module/eth]
 type = internal/network
@@ -178,7 +189,8 @@ label-padding = 2
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume-padding = 3
+format-volume-margin = 2
+format-volume-foreground = ${colors.color6}
 format-volume = <ramp-volume><label-volume>
 label-volume = %percentage:4:4%%
 use-ui-max = false
@@ -190,9 +202,9 @@ ramp-volume-2 = ""
 
 
 format-muted-padding = 2
-label-muted = "  muted"   
+label-muted = "muted"   
 label-muted-background = ${colors.background}
-label-muted-foreground = ${xrdb:color6:#fff}
+label-muted-foreground = ${colors.color7}
 
 [module/temperature]
 type = internal/temperature
@@ -293,6 +305,12 @@ click-left = i3-msg '[class="Spotify"] focus'
 
 [module/battery]
 type = internal/battery
+format-charging-margin = 2
+format-charging-foreground = ${colors.color2}
+format-discharging-margin = 2
+format-discharging-foreground = ${colors.color1}
+format-full-margin = 2
+format-full-foreground = ${colors.color3}
 full-at = 100
 time-format = %H:%M
 battery = BAT0
@@ -310,22 +328,22 @@ format-full = <label-full>
 
 format-charging-underline = ${colors.foreground}
 format-discharging-underline = ${colors.foreground}
-format-full-prefix = " "
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+format-full-prefix = " "
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
 ramp-capacity-0-foreground = ${colors.foreground}
 ramp-capacity-foreground   = ${colors.foreground}
 bar-capacity-width = 10
 
-animation-charging-0 = ""
-animation-charging-1 = ""
-animation-charging-2 = ""
-animation-charging-3 = ""
-animation-charging-4 = ""
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 
 animation-charging-framerate = 750
 
