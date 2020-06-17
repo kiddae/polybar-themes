@@ -54,6 +54,7 @@ foreground = ${colors.foreground}
 padding=3
 font-0=CozetteVector:size=9;3
 font-1=Wuncon Siji:size=9;3
+font-2=IPAGothic:size=9;3
 
 modules-left =  bspwm 
 ; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
@@ -114,7 +115,7 @@ label-song-padding = 1
 label-song = %artist%: %title%
 
 format-offline = <label-offline>
-label-offline =  offline
+label-offline = no players found
 format-offline-foreground = ${colors.color6}
 
 icon-prev = ""
@@ -191,8 +192,8 @@ type = internal/pulseaudio
 
 format-volume-margin = 2
 format-volume-foreground = ${colors.color6}
-format-volume = <ramp-volume><label-volume>
-label-volume = %percentage:4:4%%
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
 use-ui-max = false
 interval = 5
 
