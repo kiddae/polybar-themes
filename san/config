@@ -31,10 +31,10 @@ background = ${xrdb:background:#000}
 
 [bar/bar]
 enable-ipc=true
-height = 35
+height = 40
 width = 98%
 offset-x = 1%
-padding = 4
+padding = 5
 ;bottom = true
 radius-bottom = 15
 
@@ -48,12 +48,12 @@ border-color = #0000
 
 line-size = 2
 
-font-0=SF Pro Display:style=Regular:size=12;3
-font-1=SF Pro Display:style=Semibold:size=12;3
-font-2=Material Icons:size=13;5
-font-3=font\-logos:size=10;3
-font-4=FontAwesome5Brands:size=11;2
-font-5=IPAGothic:size=11;4
+font-0=SF Pro Display:style=Regular:size=12;2
+font-1=SF Pro Display:style=Semibold:size=12;2
+font-2=Material Icons:size=13;4
+font-3=font\-logos:size=10;2
+font-4=FontAwesome5Brands:size=11;1
+font-5=IPAGothic:size=11;3
 
 modules-right = mpd pulseaudio time powermenu
 
@@ -142,16 +142,16 @@ enable-scroll = true
 
 label-focused = %index%
 label-focused-underline = ${colors.foreground}
-label-focused-padding = 4
+label-focused-padding = 5
 label-focused-font = 2
 
 label-empty =
 
 label-urgent = 
-label-urgent-padding = 4
+label-urgent-padding = 5
 
 label-occupied = %index%
-label-occupied-padding = 4
+label-occupied-padding = 5
 
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
