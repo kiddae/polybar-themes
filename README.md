@@ -12,10 +12,60 @@ ln -f -t ~/.config/polybar ~/.config/polybar/themes/$1/*
 
 You can check my [dotfiles](https://github.com/ngynLk/dotfiles) and [scripts](https://github.com/ngynLk/scripts) for further reference. (disclaimer: it's messy)
 
-# Info about my themes
-At this time, all my themes use `Xresources` colors, for `pywal` integration.
+# Important to get the themes working
 
-They are mostly made for `i3`, but copy-pasting the `i3` module to `bspwm` shouldn't be too complicated.
+**All my themes fetches their colors from `xrdb`, so in order to get the themes working, you should set them in the `~/.Xresources` or `~/.Xdefaults` file and then run `xrdb ~/.Xresources` (or `~/.Xdefaults`). You can find about the syntax [here](https://wiki.archlinux.org/index.php/Color_output_in_console#X_window_system)**
+
+Some of them have both `i3` and `bspwm` modules, some don't, depends on when I wrote them. If you absolutely need a bar working on i3, feel free to issue or pull-request.
+
+## tiny
+
+*screenshot*
+![scrot1](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/tiny/scrot1.png "Screenshot n°1")
+
+*another screenshot*
+![scrot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/tiny/scrot2.png "Screenshot n°2")
+
+A minimal, tiny and discreet bar.
+
+**Fonts used:**
++ CozetteVector
+
+**Modules:**
++ `bspwm`: shows the current workspace name
++ `pulseaudio`: shows the volume and a little icon
++ `date`: shows date and time
+
+## san
+
+*screenshot*
+![scrot1](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/san/scrot1.png "Screenshot n°1")
+
+*another screenshot*
+![scrot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/san/scrot2.png "Screenshot n°2")
+
+**Fonts used:**
++ SF Compact Text
++ Font Awesome 5 Brands
++ Material Icons
++ font-logo
++ IPAGothic (for japanese glyphs)
+
+**Modules:**
++ `launcher` : launches a `rofi` instance, it is a script you can find in my repo.
++ `i3` : i3 workspaces, basically.
++ `mpd` : `mpd` controller
++ `spotify` : shows current playing song on  spotify (uses `playerctl`)
++ `cpu`, `memory`, `date` : pretty self-explanatory.
++ `pulseaudio` : controls volume, requires `pulseaudio` (obviously)
++ `power` : polybar-ish menu
+
+## transparent
+
+*screenshot*
+![scrot1](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/transparent/scrot.png "Screenshot")
+
+the `san` theme as above, but with a transparent background, and slightly thicker.
 
 ## cherryblocks
 
@@ -64,24 +114,82 @@ This theme works very well with rounded borders. To enable them, uncomment the `
 + `date` : displays date and time (24h format)
 + `power` : launches a `rofi` instance, script to be found on my scripts repo (might not really look well with this theme...)
 + *(optional)* `i3` : manages i3 workspaces with some cool round icons, just place it on the `i3` bar instead of `wsnumber`. You can see it in the second screenshot
-## san
+
+## miniblocks
 
 *screenshot*
-![scrot1](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/san/scrot1.png "Screenshot n°1")
+![scrot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/miniblocks/scrot.png "Screenshot")
 
-*another screenshot*
-![scrot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/san/scrot2.png "Screenshot n°2")
+Same, this bar is composed of three bars, they will be launched using the script provided.
 
 **Fonts used:**
-+ SF Compact Text
-+ Font Awesome 5 Brands
++ CozetteVector
++ IPAGothic
+
+**Modules:**
++ `bspwm`
++ `mpd`/`spotify`: the `spotify` modules requires `playerctl`.
++ `pulseaudio`
++ `time`
+
+## classic
+
+*screenshot*
+![screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/classic/scrot.png "Screenshot")
+
+*another screenshot*
+![screenshot2](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/classic/scrot2.png "Screenshot no.2")
+
+A simple bar that I wanted to not be too fancy and straight forward.
+
+**Fonts used:**
++ Iosevka Nerd Font
 + Material Icons
-+ font-logo
-+ IPAGothic (for japanese glyphs)
+
+**Modules:**
++ `bspwm`: workspaces, basically
++ `time`: displays the time and date
++ `mpd`/`spotify`: simple `mpd` controller, or `spotify` using `playerctl`
++ `pulseaudio`: control the volume 
+
+## classic2
+
+*screenshot*
+![screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/classic2/scrot.png "Screenshot")
+
+A bitmap, more colorful version of the `classic` theme. A rounded variant is available, pretty similar to `san`.
+
+*rounded screenshot*
+![rounded_screenshot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/classic2-rounded/scrot.png "Screenshot, rounded")
+
+**Fonts used:**
++ CozetteVector
++ Siji
+
+**Modules:**
++ `bspwm`: workspaces, basically
++ `time`: displays the time and date
++ `mpd`: simple `mpd` controller
++ `cpu` and `memory`
++ `wlan`: shows current wifi network used
++ `pulseaudio`: control the volume 
+
+## float
+
+*screenshot*
+![scrot](https://raw.githubusercontent.com/ngynLk/polybar-themes/master/float/scrot.png "Screenshot")
+
+A little floating bar.
+
+**Fonts used:**
++ cherry
++ FontAwesome5
++ font-logos
++ IPAGothic
 
 **Modules:**
 + `launcher` : launches a `rofi` instance, it is a script you can find in my repo.
-+ `i3` : i3 workspaces, basically.
++ `bspwm` : bspwm workspaces, basically.
 + `mpd` : `mpd` controller
 + `spotify` : shows current playing song on  spotify (uses `playerctl`)
 + `cpu`, `memory`, `date` : pretty self-explanatory.
