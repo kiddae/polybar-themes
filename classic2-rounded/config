@@ -55,7 +55,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 padding=3
-font-0=CozetteVector:size=9;3
+font-0=Cozette:size=9;3
 font-1=Wuncon Siji:size=9;3
 font-2=IPAGothic:size=9;3
 

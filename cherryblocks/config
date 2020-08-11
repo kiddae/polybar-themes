@@ -31,18 +31,16 @@ color3 = ${xrdb:color6}
 
 [bar/base]
 enable-ipc = true
-font-0=cherry:size=14:antialias=true;3
-font-1=FontAwesome5Free:style=Regular:pixelsize=8:antialias=true;3
-font-2=FontAwesome5Free:style=Solid:pixelsize=8:antialias=true;3
+font-0=cherry:size=14;3
+font-1=FontAwesome5Free:style=Regular:pixelsize=8:antialias=true;2
+font-2=FontAwesome5Free:style=Solid:pixelsize=8:antialias=true;2
 font-3=IPAGothic:style=Regular:size=11:antialias=true;3
 
 bottom = true
-border-size = 2
+border-size = 0
 border-color = ${self.foreground}
 
 height = 50
-;radius = 20
-;Works very well with a radius like this! Put it on every bar.
 
 background = ${colors.background}
 override-redirect=false
@@ -76,7 +74,7 @@ enable-ipc = true
 width = 32%
 
 foreground = ${colors.color2}
-offset-x = 50.5%
+offset-x = 50.7%
 
 ; Spotify (uses playerctl)
 ;modules-left = previous playpause next spotify
