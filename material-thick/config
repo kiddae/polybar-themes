@@ -19,6 +19,8 @@
 [colors]
 
 foreground = ${xrdb:foreground:#fff}
+;grey = ${xrdb:color8:#888}
+grey = #545454
 ;foreground = ${xrdb:background:#000}
 background = ${xrdb:background:#000}
 ;background = ${xrdb:foreground:#000}
@@ -31,14 +33,16 @@ background = ${xrdb:background:#000}
 
 [bar/base]
 enable-ipc=true
-height = 40
+height = 50
 width = 100%
 
-offset-y = 10
+offset-y = 20
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 bottom = false
+border-size = 10
+border-color = ${colors.background}
 
 line-size = 2
 
@@ -51,37 +55,22 @@ font-5=IPAGothic:size=11;2
 
 wm-restack = bspwm
 
-[bar/launcher]
-inherit = bar/base
-modules-center = launcher
-width = 45
-offset-x = 10
-
-
 [bar/windows]
 inherit = bar/base
 modules-left = bspwm
-width = 20%
+width = 14%
 padding = 2
-offset-x = 65
-
-[bar/music]
-inherit = bar/base
-modules-left = mpd 
-modules-right = mpd-controls
-width = 522
-padding = 4
-offset-x = 1083
+offset-x = 1292
 
 [bar/tray]
 inherit = bar/base
-modules-left = pulseaudio date powermenu
+modules-left = pulseaudio date
 ;modules-center = date
 ;modules-right = powermenu
 padding = 2
 module-margin = 1
-width = 295
-offset-x = 1615
+width = 14%
+offset-x = 1590
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
 ; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
@@ -114,16 +103,17 @@ reverse-scroll = false
 enable-scroll = true
 
 label-focused = %index%
+label-focused-padding = 4
 label-focused-underline = ${colors.foreground}
-label-focused-padding = 3
-label-focused-font = 2
 
 label-empty = %index%
-label-empty-padding = 3
+;label-empty-foreground = ${colors.grey}
+label-empty-padding = 4
 
 label-occupied = %index%
-label-occupied-padding = 3
-label-occupied-font = 2
+;label-occupied-foreground = ${colors.grey}
+label-occupied-underline = ${colors.grey}
+label-occupied-padding = 4
 
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
@@ -156,11 +146,12 @@ ramp-signal-color1 = ${colors.color1}
 type = internal/date
 interval = 10
 format-margin = 2
+format-underline = ${colors.grey}
 
 time = "%H:%M"
-date = "%d %b"
+date = "%a/%d"
 
-label = %time% | %date%
+label = %time%    %date%
 label-background = ${colors.background}
 label-padding = 2
 
@@ -170,6 +161,7 @@ type = internal/pulseaudio
 
 format-volume-margin = 4
 format-volume = <ramp-volume><label-volume>
+format-volume-underline = ${colors.grey}
 label-volume = %percentage:4:4%%
 format-volume-background = ${colors.background}
 use-ui-max = false
@@ -182,6 +174,7 @@ ramp-volume-2 = ""
 
 label-muted = " muted"   
 label-muted-background = ${colors.background}
+label-muted-foreground = ${colors.grey}
 label-muted-padding = 2
 
 [module/mpd]

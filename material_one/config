@@ -32,9 +32,13 @@ background = ${xrdb:background:#000}
 [bar/base]
 enable-ipc=true
 height = 40
-width = 100%
+width = 98.7%
 
 offset-y = 10
+offset-x = 10
+
+padding = 4
+module-margin = 1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -50,6 +54,9 @@ font-4=FontAwesome5Brands:size=11;2
 font-5=IPAGothic:size=11;2
 
 wm-restack = bspwm
+
+modules-left = launcher bspwm
+modules-right = mpd mpd-controls pulseaudio date powermenu
 
 [bar/launcher]
 inherit = bar/base
