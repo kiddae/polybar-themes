@@ -18,9 +18,11 @@
 
 [colors]
 
-foreground = ${xrdb:foreground:#ffff}
+foreground = ${xrdb:foreground:#fff}
+grey = ${xrdb:color8:#545454}
 ;foreground = ${xrdb:background:#000}
-background = #0000
+background = ${xrdb:background:#000}
+;background = ${xrdb:foreground:#000}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -28,42 +30,34 @@ background = #0000
 ; | |_) | (_| | |  \__ \
 ; |_.__/ \__,_|_|  |___/
 
-[bar/bar]
+[bar/base]
 enable-ipc=true
 height = 40
-width = 100%
-;bottom = true
-offset-y = 10
-padding = 10
+width = 100%:-40
+
+offset-y = 20
+offset-x = 20
+
+padding = 2
+module-margin = 1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
+bottom = false
+
+border-color = ${colors.background}
+border-size = 15
 
 line-size = 2
 
-font-0=SF Pro Display:style=Regular:size=12;4
-font-1=SF Pro Display:style=Semibold:size=12;4
-font-2=Material Icons:size=13;7
-font-3=font\-logos:size=10;4
-font-4=FontAwesome5Brands:size=11;2
-font-5=IPAGothic:size=11;2
+font-0=Dina:size=11;3
+font-1=Siji:size=11;3
+font-2=IPAGothic:size=11;2
 
-modules-right = playerctl pulseaudio time powermenu
-
-; i3
-; modules-left = launcher i3 xwindow
-; scroll-up = i3wm-wsnext
-; scroll-down = i3wm-wsprev
-; wm-restack = i3
-
-; bspwm
-modules-left = launcher bspwm xwindow
-scroll-up = bspwm-wsnext
-scroll-down = bspwm-wsprev
 wm-restack = bspwm
-override-redirect = false
 
-
+modules-left = launcher bspwm xwindow
+modules-right = mpd mpd-controls pulseaudio date powermenu
 
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
@@ -73,61 +67,23 @@ override-redirect = false
                                          
 [module/launcher]
 type=custom/text
-content = 
-content-margin = 2
+content = 
+content-margin = 1
 click-left=launcher
 ;The script above is to be found here : https://github.com/ngynLk/scripts
 
-[module/updates]
-type=custom/script
-exec = yay -Qu | wc -l
-exec-if = [[ $(yay -Qu | wc -l) != 0 ]]
-format =   <label> update(s) available.
-format-margin = 8
-tail = true
-interval = 30
-click-left = xterm -e yay -Syu
-
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:75:...%
+label = %title:0:53:...%
+label-underline = ${colors.foreground}
 label-empty = Empty 
-label-empty-font = 2
-label-font = 2
-format-margin = 4
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-format-margin = 4
-index-sort = true
-
-enable-click = true
-reverse-scroll = false
-
-label-focused = %index%
-label-focused-underline = ${colors.foreground}
-label-focused-padding = 4
-label-focused-font = 2
-
-label-unfocused = %index%
-label-unfocused-padding = 4
-
-label-urgent = !
-label-urgent-padding = 5
-label-urgent-underline = ${colors.background}
-label-urgent-font = 2
-
-;ws-icon-0 = 1;
-;ws-icon-1 = 2;
-;ws-icon-2 = 3;
-;ws-icon-9 = 10;
-;ws-icon-default = 
+label-empty-underline = ${colors.grey}
+format-margin = 2
 
 [module/bspwm]
 type = internal/bspwm
 format = <label-state>
-format-margin = 4
+format-margin = 2
 index-sort = true
 
 enable-click = true
@@ -136,13 +92,14 @@ enable-scroll = true
 
 label-focused = %index%
 label-focused-underline = ${colors.foreground}
-label-focused-padding = 4
-label-focused-font = 2
+label-focused-padding = 1
 
-label-empty =
+label-empty = %index%
+label-empty-padding = 1
 
 label-occupied = %index%
-label-occupied-padding = 4
+label-occupied-underline = ${colors.grey}
+label-occupied-padding = 1
 
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
@@ -152,16 +109,18 @@ label-occupied-padding = 4
 
 [module/wlan]
 type = internal/network
-interface = wlx0013eff2094e
+interface = wlp0s20u1
 interval = 3.0
 
-format-connected =  <label-connected>
+format-connected = %{A1:urxvt -e nmtui & disown:}   <label-connected>%{A}
+format-connected-underline = ${colors.foreground}
+format-connected-margin = 3
 label-connected = %essid%
-label-connected-color1 = ${colors.color1}
 
-format-disconnected = <label-disconnected>
+format-disconnected = %{A1:urxvt -e nmtui & disown:}<label-disconnected>%{A}
+format-disconnected-margin = 3
+format-disconnected-underline = ${colors.grey}
 label-disconnected = %ifname% disconnected
-label-disconnected-color1 = ${colors.color1}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -170,50 +129,62 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-color1 = ${colors.color1}
 
-[module/time]
+[module/date]
 type = internal/date
 interval = 10
-format-margin = 4
+format-margin = 2
+format-underline = ${colors.grey}
 
 time = "%H:%M"
 date = "%d %b"
 
-label = %time% | %date%
+label = %{A1:urxvt -e calcurse & disown:}%time% | %date%%{A}
 label-background = ${colors.background}
-label-padding = 2
+label-padding = 0
 
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
+format-volume-padding = 2
 format-volume-margin = 2
+format-volume-underline = ${colors.foreground}
 format-volume = <ramp-volume><label-volume>
 label-volume = %percentage:4:4%%
 format-volume-background = ${colors.background}
-format-volume-padding = 2
 use-ui-max = false
 interval = 5
 
 ramp-volume-0 = ""
-ramp-volume-1 = ""
-ramp-volume-2 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
 
 
 label-muted = " muted"   
 label-muted-background = ${colors.background}
-label-muted-padding = 2
+format-muted-underline = ${colors.grey}
+format-muted-margin = 2
+format-muted-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online-margin = 6
 label-song-maxlen = 48
-label-song = "%artist%: %title%"
-format-online = " %{A1:xterm -e ncmpcpp:}<label-song>%{A}    <icon-prev><toggle><icon-next>"
+format-paused-underline = ${colors.grey}
+format-playing-underline = ${colors.foreground}
+label-song = %artist%: %title%
+format-online = "%{A1:urxvt -e ncmpcpp & disown:}    <label-song>%{A}"
 
-icon-play = 
-icon-pause = 
-icon-prev = 
-icon-next = 
+
+[module/mpd-controls]
+type = internal/mpd
+format-online = "<icon-prev> <toggle> <icon-next>"
+format-playing-underline = ${colors.foreground}
+format-paused-underline = ${colors.grey}
+
+icon-play = 
+icon-pause = 
+icon-prev = 
+icon-next = 
 
 [module/temperature]
 type = internal/temperature
@@ -232,44 +203,20 @@ ramp-1 = 
 ramp-2 = 
 
 [module/powermenu]
-type = custom/menu
+type = custom/text
 
-expand-right = false
+content-padding = 2
+content = 
+click-left = powermenu
 
-format-margin = 2
-format-spacing = 2
-
-label-open = 
-label-close = 
-label-separator = |
-
-; reboot
-menu-0-1 = 
-menu-0-1-exec = menu-open-2
-; poweroff
-menu-0-2 = 
-menu-0-2-exec = menu-open-3
-; logout
-menu-0-0 = 
-menu-0-0-exec = menu-open-1
-
-menu-2-0 = 
-menu-2-0-exec = reboot
-
-menu-3-0 = 
-menu-3-0-exec = poweroff
-
-menu-1-0 = 
-menu-1-0-exec = i3-msg exit || openbox --exit
-
-[module/playerctl]
+[module/spotify]
 type = custom/script
 format-margin = 4
-format-prefix = " "
-exec = playerctl_status
-exec-if = [[ "$(playerctl -l)" != "No players found" ]] && echo "0"
+format =    <label>
+exec = playerctl metadata --format '{{artist}}: {{title}}'
 tail = true
-interval = 0
+interval = 1
+click-left = "playerctl play-pause"
 
 [settings]
 screenchange-reload = true

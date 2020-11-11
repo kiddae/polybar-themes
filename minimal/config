@@ -20,7 +20,7 @@
 
 foreground = ${xrdb:foreground:#ffff}
 ;foreground = ${xrdb:background:#000}
-background = #0000
+background = ${xrdb:background}
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -30,37 +30,34 @@ background = #0000
 
 [bar/bar]
 enable-ipc=true
-height = 40
-width = 100%
+height = 30
+border-size = 10
+border-color = ${colors.background}
+width = 50%
 ;bottom = true
 offset-y = 10
-padding = 10
+offset-x = 25%
+padding = 2
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size = 0
 
 font-0=SF Pro Display:style=Regular:size=12;4
 font-1=SF Pro Display:style=Semibold:size=12;4
-font-2=Material Icons:size=13;7
+font-2=Material Icons:size=13;6
 font-3=font\-logos:size=10;4
 font-4=FontAwesome5Brands:size=11;2
-font-5=IPAGothic:size=11;2
+font-5=IPAGothic:size=12;4
 
-modules-right = playerctl pulseaudio time powermenu
-
-; i3
-; modules-left = launcher i3 xwindow
-; scroll-up = i3wm-wsnext
-; scroll-down = i3wm-wsprev
-; wm-restack = i3
+modules-right = playerctl pulseaudio time
 
 ; bspwm
-modules-left = launcher bspwm xwindow
+modules-left = bspwm
 scroll-up = bspwm-wsnext
 scroll-down = bspwm-wsprev
-wm-restack = bspwm
+;wm-restack = bspwm
 override-redirect = false
 
 
@@ -175,10 +172,10 @@ type = internal/date
 interval = 10
 format-margin = 4
 
-time = "%H:%M"
+time = "%{T2}%H:%M%{T-}"
 date = "%d %b"
 
-label = %time% | %date%
+label =    %time% | %date%
 label-background = ${colors.background}
 label-padding = 2
 
@@ -206,9 +203,9 @@ label-muted-padding = 2
 [module/mpd]
 type = internal/mpd
 format-online-margin = 6
-label-song-maxlen = 48
-label-song = "%artist%: %title%"
-format-online = " %{A1:xterm -e ncmpcpp:}<label-song>%{A}    <icon-prev><toggle><icon-next>"
+label-song-maxlen = 63
+label-song = "%{T2}%artist%:%{T-} %title%"
+format-online = " %{A1:xterm -e ncmpcpp & disown:}<label-song>%{A}  <icon-prev><toggle><icon-next>"
 
 icon-play = 
 icon-pause = 
@@ -266,6 +263,8 @@ menu-1-0-exec = i3-msg exit || openbox --exit
 type = custom/script
 format-margin = 4
 format-prefix = " "
+;exec = playerctl metadata --format '{{artist}}: {{title}}'
+;exec = if [[ "$(playerctl status)" = "Playing" ]]; then echo %{T2}$(playerctl metadata --format {{artist}}):%{T-} $(playerctl metadata --format {{title}}) %{A1:playerctl previous:}%{A} %{A1:playerctl pause:}%{A} %{A1:playerctl next:}%{A}; elif [[ "$(playerctl status)" = "Paused" ]]; then echo %{T2}$(playerctl metadata --format {{artist}}):%{T-} $(playerctl metadata --format {{title}}) %{A1:playerctl previous:}%{A} %{A1:playerctl play:}%{A} %{A1:playerctl next:}%{A}; else echo -n ""; fi
 exec = playerctl_status
 exec-if = [[ "$(playerctl -l)" != "No players found" ]] && echo "0"
 tail = true

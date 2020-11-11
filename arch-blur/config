@@ -40,19 +40,24 @@ background = ${colors.background}
 foreground = ${colors.color1}
 
 line-size = 2
+padding = 1
 
-font-0=Iosevka:size=10;3
+font-0=Iosevka Nerd Font:size=11;5
+;font-0=SF Pro Display:size=12;5
 font-1=Font Awesome 5 Free Solid:size=8;3
 font-2=Font Awesome 5 Free Regular:size=8;3
 font-3=Font Awesome 5 Brands:size=8;3
-font-4=font\-logos:size=11;3
-font-5=IPAGothic:size=11:antialias=true;3
+font-4=font\-logos:size=10;4
+font-5=Material Icons:size=13;6
+font-6=IPAGothic:size=11:antialias=true;3
 
 modules-left = launcher i3 
-; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls)
+; Spotify (scripts at github.com/dietervanhoof/polybar-spotify-controls) /!\OUTDATED/!\ USE PLAYERCTL INSTEAD
 ;modules-center = previous playpause next spotify
 ; Mpd
-modules-center = mpd
+;modules-center = mpd
+; Playerctl (use the playerctk_status script in my repo: https://github.com/ngynLk/scripts)
+modules-center = playerctl
 modules-right = cpu memory time pulseaudio power
 
 scroll-up = i3wm-wsnext
@@ -231,7 +236,7 @@ label-padding = 2
 type = internal/pulseaudio
 
 format-margin = 1
-format-volume = <ramp-volume><label-volume>
+format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage:3:3%%
 format-volume-foreground = ${colors.color3}
 format-volume-background = ${colors.background}
@@ -244,7 +249,7 @@ ramp-volume-1 = ""
 ramp-volume-2 = ""
 
 
-label-muted = ""   
+label-muted =   muted
 label-muted-background = ${colors.background}
 label-muted-foreground = ${colors.color3}
 label-muted-padding = 2
@@ -344,6 +349,16 @@ hook-0 = echo ""
 hook-1 = python3 ~/.scripts/spotify/spotify_status.py
 initial = 2
 click-left = i3-msg '[class="Spotify"] focus'
+
+[module/playerctl]
+type = custom/script
+format-margin = 4
+format-prefix = " "
+; This uses playerctl and a script you can find on my repo. Put the player you want after the command below (`playerctld' if you want it to be adaptive)
+exec = playerctl_status playerctld
+exec-if = [[ "$(playerctl -l)" != "No players found" ]] && echo "0"
+tail = true
+interval = 0
 
 [settings]
 screenchange-reload = true
