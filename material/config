@@ -38,7 +38,7 @@ offset-y = 10
 
 background = ${colors.background}
 foreground = ${colors.foreground}
-bottom = false
+bottom = true
 
 line-size = 2
 

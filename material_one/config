@@ -19,6 +19,7 @@
 [colors]
 
 foreground = ${xrdb:foreground:#fff}
+grey = ${xrdb:color8:#545454}
 ;foreground = ${xrdb:background:#000}
 background = ${xrdb:background:#000}
 ;background = ${xrdb:foreground:#000}
@@ -31,20 +32,25 @@ background = ${xrdb:background:#000}
 
 [bar/base]
 enable-ipc=true
-height = 40
-width = 98.7%
+height = 50
+;width = 100%:-20
 
-offset-y = 10
-offset-x = 10
+;offset-y = 10
+;offset-x = 10
 
 padding = 4
 module-margin = 1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
-bottom = false
+bottom = true
 
-line-size = 2
+border-color = ${colors.background}
+;border-size = 5
+;border-top-size = 10
+
+line-size = 0
+line-color = ${colors.grey}
 
 font-0=Google Sans:style=Regular:size=12;3
 font-1=Google Sans:style=Bold:size=12;3
@@ -55,40 +61,9 @@ font-5=IPAGothic:size=11;2
 
 wm-restack = bspwm
 
-modules-left = launcher bspwm
-modules-right = mpd mpd-controls pulseaudio date powermenu
+modules-left = launcher bspwm xwindow
+modules-right = playerctl pulseaudio date powermenu
 
-[bar/launcher]
-inherit = bar/base
-modules-center = launcher
-width = 45
-offset-x = 10
-
-
-[bar/windows]
-inherit = bar/base
-modules-left = bspwm
-width = 20%
-padding = 2
-offset-x = 65
-
-[bar/music]
-inherit = bar/base
-modules-left = mpd 
-modules-right = mpd-controls
-width = 522
-padding = 4
-offset-x = 1083
-
-[bar/tray]
-inherit = bar/base
-modules-left = pulseaudio date powermenu
-;modules-center = date
-;modules-right = powermenu
-padding = 2
-module-margin = 1
-width = 295
-offset-x = 1615
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
 ; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
@@ -105,10 +80,10 @@ click-left=launcher
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:53:...%
-label-empty = Empty 
-label-empty-font = 2
-label-font = 2
-format-margin = 4
+label-overline = ${colors.foreground}
+label-empty = Empty
+label-empty-foreground = ${colors.grey}
+format-margin = 2
 
 [module/bspwm]
 type = internal/bspwm
@@ -121,16 +96,17 @@ reverse-scroll = false
 enable-scroll = true
 
 label-focused = %index%
-label-focused-underline = ${colors.foreground}
-label-focused-padding = 3
 label-focused-font = 2
+label-focused-overline = ${colors.foreground}
+label-focused-padding = 3
 
 label-empty = %index%
 label-empty-padding = 3
+label-empty-foreground = ${colors.grey}
 
 label-occupied = %index%
+label-occupied-overline = ${colors.grey}
 label-occupied-padding = 3
-label-occupied-font = 2
 
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
@@ -143,14 +119,15 @@ type = internal/network
 interface = wlp0s20u1
 interval = 3.0
 
-format-connected =    <label-connected>
-format-connected-margin = 2
+format-connected = %{A1:urxvt -e nmtui & disown:}   <label-connected>%{A}
+format-connected-overline = ${colors.foreground}
+format-connected-margin = 3
 label-connected = %essid%
-label-connected-color1 = ${colors.color1}
 
-format-disconnected = <label-disconnected>
+format-disconnected = %{A1:urxvt -e nmtui & disown:}<label-disconnected>%{A}
+format-disconnected-margin = 3
+format-disconnected-overline = ${colors.grey}
 label-disconnected = %ifname% disconnected
-label-disconnected-color1 = ${colors.color1}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -163,11 +140,12 @@ ramp-signal-color1 = ${colors.color1}
 type = internal/date
 interval = 10
 format-margin = 2
+format-overline = ${colors.grey}
 
 time = "%H:%M"
 date = "%d %b"
 
-label = %time% | %date%
+label = %{A1:urxvt -e calcurse & disown:}%time% | %date%%{A}
 label-background = ${colors.background}
 label-padding = 2
 
@@ -175,7 +153,9 @@ label-padding = 2
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume-margin = 4
+format-volume-padding = 2
+format-volume-margin = 2
+format-volume-overline = ${colors.foreground}
 format-volume = <ramp-volume><label-volume>
 label-volume = %percentage:4:4%%
 format-volume-background = ${colors.background}
@@ -189,13 +169,18 @@ ramp-volume-2 = ""
 
 label-muted = " muted"   
 label-muted-background = ${colors.background}
-label-muted-padding = 2
+format-muted-foreground = ${colors.grey}
+format-muted-overline = ${colors.grey}
+format-muted-margin = 2
+format-muted-padding = 2
 
 [module/mpd]
 type = internal/mpd
 label-song-maxlen = 48
-label-song = "%artist%: %title%"
-format-online = "    <label-song>"
+format-paused-overline = ${colors.grey}
+format-playing-overline = ${colors.foreground}
+label-song = %artist%: %title%
+format-online = "%{A1:urxvt -e ncmpcpp & disown:}    <label-song>%{A}"
 
 icon-play = 
 icon-pause = 
@@ -205,6 +190,8 @@ icon-next = 
 [module/mpd-controls]
 type = internal/mpd
 format-online = "<icon-prev> <toggle> <icon-next>"
+format-playing-overline = ${colors.foreground}
+format-paused-overline = ${colors.grey}
 
 icon-play = 
 icon-pause = 
@@ -242,6 +229,14 @@ exec = playerctl metadata --format '{{artist}}: {{title}}'
 tail = true
 interval = 1
 click-left = "playerctl play-pause"
+
+[module/playerctl]
+type = custom/script
+format-margin = 4
+exec = playerctl_status playerctld
+exec-if = [[ "$(playerctl -l)" != "No players found" ]] && echo "0"
+tail = true
+interval = 0
 
 [settings]
 screenchange-reload = true
