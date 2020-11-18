@@ -30,7 +30,7 @@ highlight = ${xrdb:color15:#222}
 
 [bar/base]
 enable-ipc = true
-font-0=Cozette:pixelsize=10;2
+font-0=CozetteVector:pixelsize=9;2
 font-1=FontAwesome5Free:style=Solid:pixelsize=8:antialias=true;2
 font-2=IPAGothic:style=Regular:size=10:antialias=true;3
 
