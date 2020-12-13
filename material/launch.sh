@@ -6,9 +6,8 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# polybar -r launcher &
-polybar -r windows &
-# polybar -r music &
+polybar -r launcher &
+polybar -r music &
 polybar -r tray &
-
+polybar -r windows &
 echo "Polybar launched..."

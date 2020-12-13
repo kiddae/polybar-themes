@@ -48,13 +48,13 @@ line-size = 2
 
 font-0=Google Sans:style=Regular:size=12;3
 font-1=Google Sans:style=Bold:size=12;3
-font-2=Material Icons:size=13;5
+font-2=Material Icons:size=15;5
 font-3=font\-logos:size=10;2
 font-4=FontAwesome5Brands:size=11;2
 font-5=IPAGothic:size=11;2
 
-;wm-restack = bspwm
-override-redirect=true
+wm-restack = bspwm
+;override-redirect=true
 
 [bar/windows]
 inherit = bar/base
@@ -70,7 +70,7 @@ modules-left = pulseaudio date
 ;modules-right = powermenu
 padding = 2
 module-margin = 1
-width = 14%
+width = 14.5%
 offset-x = 1590
 
 ;                      _       _           
