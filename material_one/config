@@ -22,7 +22,7 @@ foreground = ${xrdb:foreground:#fff}
 grey = ${xrdb:color8:#545454}
 ;foreground = ${xrdb:background:#000}
 background = ${xrdb:background:#000}
-;background = ${xrdb:foreground:#000}
+;background = #0000
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -43,7 +43,7 @@ module-margin = 1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
-bottom = true
+bottom = false
 
 border-color = ${colors.background}
 ;border-size = 5
@@ -53,14 +53,14 @@ line-size = 0
 line-color = ${colors.grey}
 
 font-0=SF Pro Display:style=Regular:size=11;2
-font-1=SF Pro Display:style=Bold:size=11;2
+font-1=SF Pro Display:style=Heavy:size=11;2
 font-2=Material Icons:size=12;4
 font-3=font\-logos:size=9;3
 font-4=FontAwesome5Brands:size=11;2
 font-5=IPAGothic:size=11;2
 
 wm-restack = bspwm
-override-redirect = true
+override-redirect = false
 
 modules-left = launcher bspwm xwindow
 modules-right = playerctl pulseaudio date powermenu
@@ -97,16 +97,19 @@ reverse-scroll = false
 enable-scroll = true
 
 label-focused = %index%
+;label-focused = 
 label-focused-font = 2
 label-focused-overline = ${colors.foreground}
 label-focused-padding = 3
 
 label-empty = %index%
+;label-empty = 
 label-empty-padding = 3
 label-empty-foreground = ${colors.grey}
 
 label-occupied = %index%
-label-occupied-overline = ${colors.grey}
+;label-occupied = 
+label-occupied-foreground = ${colors.foreground}
 label-occupied-padding = 3
 
 ;ws-icon-0 = 1;

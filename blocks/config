@@ -44,7 +44,7 @@ background = ${colors.background}
 override-redirect=true
 offset-y = 10
 
-wm-restack = i3
+;wm-restack = i3
 
 [bar/i3]
 inherit = bar/base

@@ -21,6 +21,8 @@
 foreground = ${xrdb:foreground:#ffff}
 ;foreground = ${xrdb:background:#000}
 background = ${xrdb:background}
+grey = ${xrdb:color8:#545454}
+
 
 ;  _                    
 ; | |__   __ _ _ __ ___ 
@@ -28,7 +30,7 @@ background = ${xrdb:background}
 ; | |_) | (_| | |  \__ \
 ; |_.__/ \__,_|_|  |___/
 
-[bar/bar]
+[bar/base]
 enable-ipc=true
 height = 30
 border-size = 10
@@ -43,6 +45,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 0
+line-color = ${colors.grey}
 
 font-0=SF Pro Display:style=Regular:size=12;4
 font-1=SF Pro Display:style=Semibold:size=12;4
@@ -139,6 +142,7 @@ label-focused-font = 2
 label-empty =
 
 label-occupied = %index%
+label-occupied-foreground = ${colors.grey}
 label-occupied-padding = 4
 
 ;ws-icon-0 = 1;
@@ -197,7 +201,7 @@ ramp-volume-2 = ""
 
 
 label-muted = " muted"   
-label-muted-background = ${colors.background}
+label-muted-foreground = ${colors.grey}
 label-muted-padding = 2
 
 [module/mpd]
@@ -262,10 +266,7 @@ menu-1-0-exec = i3-msg exit || openbox --exit
 [module/playerctl]
 type = custom/script
 format-margin = 4
-format-prefix = " "
-;exec = playerctl metadata --format '{{artist}}: {{title}}'
-;exec = if [[ "$(playerctl status)" = "Playing" ]]; then echo %{T2}$(playerctl metadata --format {{artist}}):%{T-} $(playerctl metadata --format {{title}}) %{A1:playerctl previous:}%{A} %{A1:playerctl pause:}%{A} %{A1:playerctl next:}%{A}; elif [[ "$(playerctl status)" = "Paused" ]]; then echo %{T2}$(playerctl metadata --format {{artist}}):%{T-} $(playerctl metadata --format {{title}}) %{A1:playerctl previous:}%{A} %{A1:playerctl play:}%{A} %{A1:playerctl next:}%{A}; else echo -n ""; fi
-exec = playerctl_status
+exec = playerctl_status playerctld     
 exec-if = [[ "$(playerctl -l)" != "No players found" ]] && echo "0"
 tail = true
 interval = 0

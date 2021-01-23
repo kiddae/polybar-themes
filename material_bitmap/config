@@ -20,7 +20,7 @@
 
 foreground = ${xrdb:foreground:#fff}
 grey = ${xrdb:color8:#545454}
-highlight = ${xrdb:color9:#541010}
+highlight = ${xrdb:color6:#545454}
 ;foreground = ${xrdb:background:#000}
 background = ${xrdb:background:#000}
 ;background = ${xrdb:foreground:#000}
@@ -33,37 +33,39 @@ background = ${xrdb:background:#000}
 
 [bar/base]
 enable-ipc=true
-height = 25
+height = 40
 ;width = 100%:-20
 
-;offset-y = 10
-;offset-x = 10
+offset-y = 0
+offset-x = 0
 
-padding = 2
+padding = 3
 module-margin = 1
 
 background = ${colors.background}
 foreground = ${colors.foreground}
-;bottom = true
+bottom = false
 
-border-color = ${colors.background}
-;border-size = 5
+border-color = ${colors.grey}
+border-size = 1
 ;border-top-size = 10
 
 line-size = 0
 line-color = ${colors.grey}
 
-font-0=scientifica:style=Regular:size=8;1
-font-1=scientifica:style=Bold:size=8;1
-font-2=Material Icons:size=9;2
-font-3=font\-logos:size=7;1
+font-0=scientifica:style=Regular:size=8;0
+font-1=scientifica:style=Bold:size=8;0
+font-2=Siji:size=8;0
+;font-2=Material Icons:size=9;2
+;font-3=font\-logos:size=7;1
 ;font-4=FontAwesome5Brands:size=11;2
-font-5=IPAGothic:size=11;2
+;font-5=IPAGothic:size=11;2
 
 wm-restack = bspwm
 
-modules-left = launcher bspwm xwindow
-modules-right = playerctl battery wlan pulseaudio date powermenu
+modules-left = bspwm layout
+modules-center = playerctl
+modules-right = pulseaudio battery wlan date
 
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
@@ -73,10 +75,20 @@ modules-right = playerctl battery wlan pulseaudio date powermenu
                                          
 [module/launcher]
 type=custom/text
-content = 
+content = 
+content-font=3
 content-margin = 1
 click-left=launcher
 ;The script above is to be found here : https://github.com/ngynLk/scripts
+
+[module/layout]
+type=custom/script
+exec = getlayout
+format-prefix = " "
+tail=true
+interval=0
+format-margin = 1
+click-left = bsp-layout cycle --layouts tiled,tall
 
 [module/battery]
 type=internal/battery
@@ -85,9 +97,9 @@ format-charging-margin = 1
 format-discharging-margin = 1
 format-full-margin = 1
 format-full-foreground = ${colors.highlight}
-label-charging =  %percentage%%
-label-discharging =  %percentage%%
-label-full =  battery full
+label-charging =  %percentage%%
+label-discharging =  %percentage%%
+label-full =  battery full
 
 [module/xwindow]
 type = internal/xwindow
@@ -100,7 +112,7 @@ format-margin = 1
 [module/bspwm]
 type = internal/bspwm
 format = <label-state>
-format-margin = 1
+format-margin = 0
 index-sort = true
 
 enable-click = true
@@ -110,16 +122,16 @@ enable-scroll = true
 label-focused = %index%
 label-focused-font = 2
 label-focused-overline = ${colors.foreground}
-label-focused-padding = 1
-;label-focused-foreground = ${colors.highlight}
+label-focused-padding = 2
+label-focused-foreground = ${colors.highlight}
 
 label-empty = %index%
-label-empty-padding = 1
+label-empty-padding = 2
 label-empty-foreground = ${colors.grey}
 
 label-occupied = %index%
-label-occupied-overline = ${colors.grey}
-label-occupied-padding = 1
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 2
 
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
@@ -129,24 +141,22 @@ label-occupied-padding = 1
 
 [module/wlan]
 type = internal/network
-interface = wlp0s20u1
+interface = wlp2s0
 interval = 3.0
 
-format-connected = %{A1:xterm -e nmtui & disown:} <label-connected>%{A}
+format-connected = %{A1:alacritty -e nmtui & disown:} <label-connected>%{A}
 format-connected-overline = ${colors.foreground}
 format-connected-margin = 1
 label-connected = %essid%
 
-format-disconnected = %{A1:xterm -e nmtui & disown:}<label-disconnected>%{A}
+format-disconnected = %{A1:alacritty -e nmtui & disown:}<label-disconnected>%{A}
 format-disconnected-margin = 1
 format-disconnected-overline = ${colors.grey}
 label-disconnected = %ifname% disconnected
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
 ramp-signal-color1 = ${colors.color1}
 
 [module/date]
@@ -158,7 +168,7 @@ format-overline = ${colors.grey}
 time = "%H:%M"
 date = "%d %b"
 
-label = %{A1:urxvt -e calcurse & disown:}%time% | %date%%{A}
+label = %{A1:alacritty -e calcurse & disown:} %time% | %date%%{A}
 label-background = ${colors.background}
 label-padding = 0
 
@@ -169,18 +179,18 @@ type = internal/pulseaudio
 format-volume-padding = 0
 format-volume-margin = 1
 format-volume-overline = ${colors.foreground}
-format-volume = <ramp-volume><label-volume>
+format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 format-volume-background = ${colors.background}
 use-ui-max = false
 interval = 5
 
 ramp-volume-0 = ""
-ramp-volume-1 = ""
-ramp-volume-2 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
 
 
-label-muted = "muted"   
+label-muted = " muted"   
 label-muted-background = ${colors.background}
 format-muted-foreground = ${colors.grey}
 format-muted-overline = ${colors.grey}
@@ -193,7 +203,7 @@ label-song-maxlen = 48
 format-paused-overline = ${colors.grey}
 format-playing-overline = ${colors.foreground}
 label-song = %artist%: %title%
-format-online = "%{A1:urxvt -e ncmpcpp & disown:}    <label-song>%{A}"
+format-online = "%{A1:alacritty -e ncmpcpp & disown:}    <label-song>%{A}"
 
 icon-play = 
 icon-pause = 
@@ -231,12 +241,12 @@ ramp-2 = 
 type = custom/text
 
 content-padding = 1
-content = 
+content = 
 click-left = powermenu
 
 [module/spotify]
 type = custom/script
-format-margin = 1
+format-margin = 4
 format =    <label>
 exec = playerctl metadata --format '{{artist}}: {{title}}'
 tail = true
@@ -246,7 +256,7 @@ click-left = "playerctl play-pause"
 [module/playerctl]
 type = custom/script
 format-margin = 1
-exec = playerctl_status playerctld
+exec = playerctl_status playerctld     
 exec-if = [[ "$(playerctl metadata)" != "No player could handle this command" ]] && echo "0"
 tail = true
 interval = 0
