@@ -1,0 +1,24 @@
+[module/pulseaudio]
+type = internal/pulseaudio
+
+use-ui-max = false
+interval = 5
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+
+format-muted = <label-muted>
+label-muted = " %{T3}婢 %{T-} Muted "
+
+format-muted-background = ${color.shade2}
+format-muted-foreground = ${color.black}
+
+format-volume-background = ${color.shade2}
+format-volume-foreground = ${color.black}
+format-volume-padding = 1
+
+ramp-volume-0 = "%{T3}奄%{T-}"
+ramp-volume-1 = "%{T3}%{T-}"
+ramp-volume-2 = "%{T3}奔%{T-}"
+ramp-volume-3 = "%{T3}墳%{T-}"
+ramp-volume-4 = "%{T3} %{T-}"

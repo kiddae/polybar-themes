@@ -1,0 +1,11 @@
+[module/window-title]
+type = internal/xwindow
+
+format = <label>
+format-background = ${color.shade2}
+format-foreground = ${color.black}
+
+label = %title%
+label-maxlen = 40
+label-font = 1
+

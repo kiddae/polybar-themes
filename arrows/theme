@@ -1,0 +1,22 @@
+[color]
+black = #1a1b26
+white = #acb0d0
+red = #e06c75
+green = #98c379
+yellow = #e0af68
+blue = #6285ef
+magenta = #c678dd
+green2 = #4abaaf
+grey = #abb2bf
+
+background = #1a1b26
+foreground = #979eab
+transparent = #00000000
+accent = #e0af68
+
+shade1 = ${color.black}
+shade2 = ${color.blue}
+shade3 = ${color.red}
+shade4 = ${color.green}
+shade5 = ${color.magenta}
+shade6 = ${color.green2}

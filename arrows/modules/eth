@@ -1,0 +1,21 @@
+[module/eth]
+type = internal/network
+
+interface = enp0s20f0u2u1
+
+interval = 5.0
+format-connected = <label-connected>
+format-connected-background = ${color.shade4}
+format-connected-foreground = ${color.black}
+format-connected-padding = 1
+format-connected-prefix = " "
+
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${color.shade4}
+format-disconnected-foreground = ${color.black}
+format-disconnected-padding = 1
+format-disconnected-prefix = " "
+
+label-connected = " %local_ip%" 
+label-disconnected = " "
+

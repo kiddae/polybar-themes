@@ -1,0 +1,48 @@
+# Reference: https://github.com/polybar/polybar/wiki/Module:-bspwm
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true 
+
+inline-mode = false
+
+enable-click = true 
+enable-scroll = false
+reverse-scroll = false
+
+fuzzy-match = true
+
+;workspace icons
+ws-icon-0 = "I;%{T1}  %{T-}"
+ws-icon-1 = "II;%{T1}  %{T-}"
+ws-icon-2 = "III;%{T1}  %{T-}"
+ws-icon-3 = "IV;%{T1}  %{T-}"
+ws-icon-4 = "V;%{T1}  %{T-}"
+ws-icon-5 = "VI;%{T1}  %{T-}"
+ws-icon-6 = "VII;%{T1}  %{T-}"
+ws-icon-7 = "VIII;%{T1} ♐︎ %{T-}"
+ws-icon-8 = "IX;%{T1}  %{T-}"
+ws-icon-9 = "X;%{T1}  %{T-}"
+
+format = <label-state> <label-mode> 
+
+label-focused = %icon%
+label-focused-foreground = ${color.black}
+label-focused-background = ${color.blue}
+label-focused-margin = 0
+
+label-occupied = %icon%
+label-occupied-foreground = ${color.white}
+label-occupied-background = ${color.background}
+label-occupied-padding = 0
+
+label-urgent = %icon%
+label-urgent-foreground = ${color.black}
+label-urgent-background = ${color.yellow}
+label-urgent-margin = 0
+
+; Empty workspaces are not displayed
+label-empty = 
+
+; No separators
+label-separator = 

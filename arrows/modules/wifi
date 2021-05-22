@@ -1,0 +1,20 @@
+[module/wifi]
+type = internal/network
+
+interface = wlo1
+
+accumulate-stats = false
+
+interval = 2.0
+format-connected = <label-connected>
+format-connected-background = ${color.shade5}
+format-connected-foreground = ${color.black}
+format-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${color.shade5}
+format-disconnected-foreground = ${color.black}
+format-disconnected-padding = 1
+
+label-connected = "%essid% %{T3} 直 %{T-}" 
+label-disconnected = "%{T3} 睊 %{T-}"

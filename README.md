@@ -84,6 +84,15 @@ a renewed version of the theme below `blocks`. Made for tiny bitmap fonts but *t
 
 modules are the same as below.
 
+## arrows
+![arrows](arrows/arrows.png)
+
+**Modules:**
++ net
++ memory
++ bspwm
++ cpu
++ window name
 ## blocks
 
 *screenshot*

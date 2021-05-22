@@ -1,0 +1,53 @@
+;; =================
+;;  LEFT SEPARATORS
+;; =================
+[module/left1]
+type = custom/text
+content-background = ${color.shade2}
+content-foreground = ${color.shade1}
+content = "%{T2}%{T-} "
+; Separator
+content-prefix-background = ${color.shade1}
+content-prefix = " "
+
+[module/left2]
+type = custom/text
+content-background = ${color.transparent}
+content-foreground = ${color.shade2}
+content = "%{T2}%{T-} "
+; Separator
+content-prefix-background = ${color.shade2}
+content-prefix = " "
+
+;; ==================
+;;  RIGHT SEPARATORS
+;; ==================
+[module/right1]
+type = custom/text
+content-background = ${color.shade2}
+content-foreground = ${color.shade1}
+content = " %{T2}%{T-}"
+
+[module/right2]
+type = custom/text
+content-background = ${color.shade3}
+content-foreground = ${color.shade2}
+content = " %{T2}%{T-}"
+
+[module/right3]
+type = custom/text
+content-background = ${color.shade4}
+content-foreground = ${color.shade3}
+content = " %{T2}%{T-}"
+
+[module/right4]
+type = custom/text
+content-background = ${color.transparent}
+content-foreground = ${color.shade4}
+content = " %{T2}%{T-}"
+
+[module/right5]
+type = custom/text
+content-background = ${color.shade1}
+content-foreground = ${color.shade5}
+content = " %{T2}%{T-}"

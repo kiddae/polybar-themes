@@ -1,0 +1,13 @@
+[module/clock]
+type = internal/date
+
+interval = 5.0
+
+date = %d/%m/%Y
+time = %H:%M
+
+label = %time% %date%
+label-font = 1
+label-background = ${color.background}
+label-foreground = ${color.white}
+label-padding = 1

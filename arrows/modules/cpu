@@ -1,0 +1,43 @@
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+format-background = ${color.red}
+format-foreground = ${color.background}
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label> <ramp-coreload>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label =  %percentage%%
+
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+ramp-coreload-0-foreground = #00f
+ramp-coreload-1-foreground = #00f
+ramp-coreload-2-foreground = #00f
+ramp-coreload-3-foreground = #00f
+ramp-coreload-4-foreground = #00f
+ramp-coreload-5-foreground = #00f
+ramp-coreload-6-foreground = #00f
+ramp-coreload-7-foreground = #00f
