@@ -93,6 +93,8 @@ modules are the same as below.
 + bspwm
 + cpu
 + window name
++ volume
+
 ## blocks
 
 *screenshot*
