@@ -1,4 +1,5 @@
-# My polybar themes
+# I have archived this repository as it is too unmaintained to be useable for anyone. You can still go to my (newly reorganized) [dotfiles](https://github.com/kiddae/dotfiles) repository.
+
 This is a repo where i store my polybar themes.
 
 You can just link each files of the theme to the `~/.config/polybar` directory.
